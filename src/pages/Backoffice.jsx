@@ -67,17 +67,21 @@ export default function Backoffice() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-[#1e3a5f] text-white shadow-lg">
+      <header className="bg-[#0B3D2E] text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                  <span className="text-[#1e3a5f] font-bold text-sm">IZA</span>
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                    alt="IZA"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <span className="font-semibold">IZA+ Backoffice</span>
-                  <p className="text-xs text-blue-200">Triagem de Manifestações</p>
+                  <p className="text-xs text-emerald-200">Triagem de Manifestações</p>
                 </div>
               </div>
             </div>

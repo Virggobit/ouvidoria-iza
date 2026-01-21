@@ -47,7 +47,7 @@ export default function ProtocoloSuccess({ protocolo }) {
 
         <div className="space-y-3">
           <Link to={createPageUrl('ConsultarProtocolo') + `?protocolo=${protocolo}`}>
-            <Button className="w-full h-12 bg-blue-900 hover:bg-blue-800">
+            <Button className="w-full h-12 bg-[#0E6B4E] hover:bg-[#0B3D2E]">
               Acompanhar manifestação
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

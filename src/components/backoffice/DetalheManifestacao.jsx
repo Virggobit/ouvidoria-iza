@@ -165,7 +165,7 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
                 <Button 
                   size="sm" 
                   onClick={aceitarSugestoesIA}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-[#0E6B4E] hover:bg-[#0B3D2E]"
                 >
                   <Check className="w-4 h-4 mr-1" />
                   Aceitar Sugestões
@@ -418,7 +418,7 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
               {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Salvar'}
             </Button>
             <Button 
-              className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+              className="flex-1 bg-[#0E6B4E] hover:bg-[#0B3D2E]"
               onClick={() => salvarTriagem(true)}
               disabled={isSaving || !triagem.encaminhamento}
             >

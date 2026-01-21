@@ -73,16 +73,20 @@ export default function ConsultarProtocolo() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header */}
-      <header className="bg-[#1e3a5f] text-white py-4">
+      <header className="bg-[#0B3D2E] text-white py-4">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-[#1e3a5f] font-bold text-sm">IZA</span>
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                  alt="IZA"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
-            <Link to={createPageUrl('Home')} className="text-sm hover:text-yellow-300 transition-colors flex items-center gap-1">
+            <Link to={createPageUrl('Home')} className="text-sm hover:text-emerald-300 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>
@@ -116,7 +120,7 @@ export default function ConsultarProtocolo() {
               <Button
                 type="submit"
                 disabled={isSearching || !protocolo.trim()}
-                className="h-14 px-8 bg-blue-900 hover:bg-blue-800"
+                className="h-14 px-8 bg-[#0E6B4E] hover:bg-[#0B3D2E]"
               >
                 {isSearching ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
