@@ -23,7 +23,9 @@ export default function NovaManifestacao() {
   const [formData, setFormData] = useState({
     tipo: '',
     anonimo: false,
+    titulo: '',
     relato: '',
+    canal: 'text',
     audioBlob: null,
     audioUrl: null,
     anexos: [],
@@ -42,7 +44,7 @@ export default function NovaManifestacao() {
   const canProceed = () => {
     switch (currentStep) {
       case 1:
-        return formData.tipo !== '';
+        return formData.tipo !== '' && formData.titulo && formData.titulo.length >= 5;
       case 2:
         return (formData.relato && formData.relato.length >= 20) || formData.audioUrl;
       case 3:
@@ -90,18 +92,33 @@ export default function NovaManifestacao() {
         anexosUrls.push(uploadResult.file_url);
       }
 
+      // Determinar canal
+      let canal = 'text';
+      if (audioUrl && anexosUrls.length > 0) {
+        canal = 'mixed';
+      } else if (audioUrl) {
+        canal = 'audio';
+      } else if (anexosUrls.length > 0) {
+        const hasVideo = formData.anexos.some(a => a.type.startsWith('video/'));
+        canal = hasVideo ? 'video' : 'image';
+      }
+
       // Create manifestacao
       const manifestacao = await base44.entities.Manifestacao.create({
         protocolo: newProtocolo,
         tipo: formData.tipo,
+        titulo: formData.titulo,
         relato: formData.relato,
+        canal: canal,
         audio_url: audioUrl,
         anexos: anexosUrls,
         anonimo: formData.anonimo,
         nome_cidadao: formData.anonimo ? null : formData.nome,
         email_cidadao: formData.anonimo ? null : formData.email,
         telefone_cidadao: formData.anonimo ? null : formData.telefone,
+        consentimento_termos: formData.consentimento,
         status: 'recebido',
+        mensagem_status_cidadao: 'Sua manifestação foi recebida e será analisada em breve.',
         ia_tipo_sugerido: iaAnalysis?.tipo,
         ia_tema_sugerido: iaAnalysis?.tema,
         ia_prioridade: iaAnalysis?.prioridade,
@@ -150,16 +167,20 @@ export default function NovaManifestacao() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header */}
-      <header className="bg-[#1e3a5f] text-white py-4">
+      <header className="bg-[#0B3D2E] text-white py-4">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-[#1e3a5f] font-bold text-sm">IZA</span>
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                  alt="IZA"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
-            <Link to={createPageUrl('Home')} className="text-sm hover:text-yellow-300 transition-colors flex items-center gap-1">
+            <Link to={createPageUrl('Home')} className="text-sm hover:text-emerald-300 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>
@@ -211,7 +232,7 @@ export default function NovaManifestacao() {
               <Button
                 onClick={handleNext}
                 disabled={!canProceed()}
-                className="h-12 px-8 bg-blue-900 hover:bg-blue-800"
+                className="h-12 px-8 bg-[#0E6B4E] hover:bg-[#0B3D2E]"
               >
                 Avançar
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -220,7 +241,7 @@ export default function NovaManifestacao() {
               <Button
                 onClick={handleSubmit}
                 disabled={!canProceed() || isSubmitting}
-                className="h-12 px-8 bg-emerald-600 hover:bg-emerald-700"
+                className="h-12 px-8 bg-[#0E6B4E] hover:bg-[#0B3D2E]"
               >
                 {isSubmitting ? (
                   <>

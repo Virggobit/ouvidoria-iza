@@ -3,6 +3,7 @@ import { AlertTriangle, MessageSquare, ThumbsUp, Lightbulb, HelpCircle } from 'l
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
+import { Input } from '@/components/ui/input';
 
 const tipos = [
   {
@@ -44,6 +45,14 @@ const tipos = [
     icon: HelpCircle,
     color: 'text-purple-600 bg-purple-50 border-purple-200 hover:bg-purple-100',
     selectedColor: 'bg-purple-600 text-white border-purple-600',
+  },
+  {
+    id: 'informacao',
+    nome: 'Informação',
+    descricao: 'Solicitar esclarecimento ou informação',
+    icon: HelpCircle,
+    color: 'text-cyan-600 bg-cyan-50 border-cyan-200 hover:bg-cyan-100',
+    selectedColor: 'bg-cyan-600 text-white border-cyan-600',
   },
 ];
 
@@ -89,6 +98,25 @@ export default function TipoStep({ data, onChange }) {
           })}
         </div>
       </fieldset>
+
+      <div className="space-y-4">
+        <div>
+          <Label htmlFor="titulo" className="text-base font-semibold text-gray-900 mb-2 block">
+            Título da manifestação *
+          </Label>
+          <Input
+            id="titulo"
+            value={data.titulo || ''}
+            onChange={(e) => onChange({ ...data, titulo: e.target.value })}
+            placeholder="Resuma em poucas palavras o assunto da sua manifestação"
+            className="text-base h-12"
+            maxLength={100}
+          />
+          <p className="text-sm text-gray-500 mt-1">
+            {data.titulo?.length || 0}/100 caracteres
+          </p>
+        </div>
+      </div>
 
       <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
         <div className="flex items-center justify-between">
