@@ -14,8 +14,12 @@ export default function ProtocoloSuccess({ protocolo }) {
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
       <div className="text-center max-w-lg mx-auto p-8">
-        <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-          <CheckCircle className="w-12 h-12 text-emerald-600" />
+        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-emerald-500 overflow-hidden">
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+            alt="IZA+"
+            className="w-full h-full object-cover animate-pulse"
+          />
         </div>
 
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
@@ -27,10 +31,10 @@ export default function ProtocoloSuccess({ protocolo }) {
           Guarde o número do protocolo para acompanhar o andamento.
         </p>
 
-        <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
-          <p className="text-sm text-blue-600 font-medium mb-2">Número do Protocolo</p>
+        <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-6 mb-8">
+          <p className="text-sm text-emerald-600 font-medium mb-2">Número do Protocolo</p>
           <div className="flex items-center justify-center gap-3">
-            <span className="text-3xl font-bold text-blue-900 font-mono tracking-wider">
+            <span className="text-3xl font-bold text-emerald-900 font-mono tracking-wider">
               {protocolo}
             </span>
             <Button
@@ -47,7 +51,7 @@ export default function ProtocoloSuccess({ protocolo }) {
 
         <div className="space-y-3">
           <Link to={createPageUrl('ConsultarProtocolo') + `?protocolo=${protocolo}`}>
-            <Button className="w-full h-12 bg-[#0E6B4E] hover:bg-[#0B3D2E]">
+            <Button className="w-full h-12 bg-[#0E6B4E] hover:bg-[#0B3D2E] shadow-lg">
               Acompanhar manifestação
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

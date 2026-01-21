@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Mic, Square, Play, Trash2, AlertCircle } from 'lucide-react';
+import { Mic, Square, Play, Trash2, AlertCircle, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import AssistenteVoz from '@/components/iza/AssistenteVoz';
 
 export default function RelatoStep({ data, onChange }) {
   const [isRecording, setIsRecording] = useState(false);
@@ -80,6 +81,10 @@ export default function RelatoStep({ data, onChange }) {
           Escreva seu relato detalhadamente ou grave um áudio explicando a situação.
         </p>
       </div>
+
+      <AssistenteVoz 
+        onTranscricao={(texto) => onChange({ ...data, relato: (data.relato || '') + '\n\n' + texto })}
+      />
 
       <div>
         <Label htmlFor="relato" className="text-base font-semibold text-gray-900 mb-2 block">
