@@ -27,6 +27,7 @@ const tipoLabels = {
   elogio: 'Elogio',
   sugestao: 'Sugestão',
   solicitacao: 'Solicitação',
+  informacao: 'Informação',
 };
 
 export default function ConsultarProtocolo() {

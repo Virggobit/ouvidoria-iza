@@ -31,6 +31,7 @@ const tipoLabels = {
   elogio: 'Elogio',
   sugestao: 'Sugestão',
   solicitacao: 'Solicitação',
+  informacao: 'Informação',
 };
 
 const statusLabels = {

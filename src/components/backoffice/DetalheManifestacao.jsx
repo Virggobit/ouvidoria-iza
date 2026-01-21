@@ -37,6 +37,7 @@ const tipoLabels = {
   elogio: 'Elogio',
   sugestao: 'Sugestão',
   solicitacao: 'Solicitação',
+  informacao: 'Informação',
 };
 
 const temas = [
@@ -310,9 +311,13 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
               </div>
             </div>
           </div>
+
+          {/* Email Notification */}
+          <NotificacaoEmail manifestacao={manifestacao} />
         </div>
 
         {/* Right Column - Triagem Form */}
+        <div className="space-y-6">
         <div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-semibold text-gray-900">Triagem</h3>
@@ -431,6 +436,7 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
               )}
             </Button>
           </div>
+        </div>
         </div>
         </div>
       </div>
