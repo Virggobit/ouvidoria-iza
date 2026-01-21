@@ -1,19 +1,25 @@
 import React, { useState, useRef } from 'react';
-import { Mic, Square, Play, Trash2, AlertCircle, Sparkles } from 'lucide-react';
+import { Mic, Square, Play, Trash2, AlertCircle, Sparkles, Video, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import AssistenteVoz from '@/components/iza/AssistenteVoz';
+import { base44 } from '@/api/base44Client';
+import { toast } from 'sonner';
 
 export default function RelatoStep({ data, onChange }) {
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [audioUrl, setAudioUrl] = useState(data.audioUrl || null);
   const [recordingTime, setRecordingTime] = useState(0);
+  const [videoFile, setVideoFile] = useState(null);
+  const [videoUrl, setVideoUrl] = useState(data.videoUrl || null);
+  const [isUploadingVideo, setIsUploadingVideo] = useState(false);
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
   const timerRef = useRef(null);
+  const videoInputRef = useRef(null);
 
   const startRecording = async () => {
     try {
@@ -67,6 +73,45 @@ export default function RelatoStep({ data, onChange }) {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const handleVideoUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validar tipo de arquivo
+    if (!file.type.startsWith('video/')) {
+      toast.error('Por favor, selecione um arquivo de vídeo válido');
+      return;
+    }
+
+    // Validar tamanho (máx 100MB)
+    if (file.size > 100 * 1024 * 1024) {
+      toast.error('O vídeo deve ter no máximo 100MB');
+      return;
+    }
+
+    setIsUploadingVideo(true);
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      setVideoFile(file);
+      setVideoUrl(file_url);
+      onChange({ ...data, videoFile: file, videoUrl: file_url });
+      toast.success('Vídeo carregado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao fazer upload do vídeo:', error);
+      toast.error('Erro ao fazer upload do vídeo');
+    }
+    setIsUploadingVideo(false);
+  };
+
+  const deleteVideo = () => {
+    setVideoFile(null);
+    setVideoUrl(null);
+    onChange({ ...data, videoFile: null, videoUrl: null });
+    if (videoInputRef.current) {
+      videoInputRef.current.value = '';
+    }
+  };
+
   const charCount = data.relato?.length || 0;
   const minChars = 20;
   const maxChars = 13000;
@@ -78,7 +123,7 @@ export default function RelatoStep({ data, onChange }) {
           Descreva sua manifestação
         </h2>
         <p className="text-gray-600">
-          Escreva seu relato detalhadamente ou grave um áudio explicando a situação.
+          Escreva seu relato detalhadamente, grave um áudio ou envie um vídeo explicando a situação.
         </p>
       </div>
 
@@ -175,11 +220,83 @@ export default function RelatoStep({ data, onChange }) {
         </div>
       </div>
 
-      {charCount < minChars && !audioUrl && (
+      <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <Label className="text-base font-semibold text-gray-900 mb-4 block">
+          Ou envie um vídeo
+        </Label>
+        
+        <div className="flex flex-col items-center space-y-4">
+          {!videoUrl ? (
+            <>
+              <input
+                ref={videoInputRef}
+                type="file"
+                accept="video/*"
+                onChange={handleVideoUpload}
+                className="hidden"
+                id="video-upload"
+              />
+              <label
+                htmlFor="video-upload"
+                className={cn(
+                  "w-full max-w-md cursor-pointer",
+                  isUploadingVideo && "pointer-events-none opacity-50"
+                )}
+              >
+                <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 hover:border-[#0E6B4E] hover:bg-emerald-50 transition-all">
+                  <div className="flex flex-col items-center gap-3">
+                    {isUploadingVideo ? (
+                      <>
+                        <div className="w-16 h-16 bg-[#0E6B4E] rounded-full flex items-center justify-center animate-pulse">
+                          <Upload className="w-8 h-8 text-white animate-bounce" />
+                        </div>
+                        <p className="text-sm font-medium text-[#0E6B4E]">Enviando vídeo...</p>
+                      </>
+                    ) : (
+                      <>
+                        <div className="w-16 h-16 bg-[#0E6B4E] rounded-full flex items-center justify-center">
+                          <Video className="w-8 h-8 text-white" />
+                        </div>
+                        <p className="text-sm font-semibold text-gray-700">Clique para selecionar um vídeo</p>
+                        <p className="text-xs text-gray-500">Máximo 100MB</p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </label>
+            </>
+          ) : (
+            <div className="w-full space-y-4">
+              <div className="flex items-center justify-center">
+                <video
+                  src={videoUrl}
+                  controls
+                  className="w-full max-w-md rounded-lg shadow-lg"
+                  aria-label="Vídeo enviado"
+                />
+              </div>
+              <div className="flex justify-center">
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="sm"
+                  onClick={deleteVideo}
+                  className="flex items-center gap-2"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Excluir vídeo
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {charCount < minChars && !audioUrl && !videoUrl && (
         <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg">
           <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-amber-800">
-            É necessário escrever pelo menos {minChars} caracteres ou gravar um áudio para continuar.
+            É necessário escrever pelo menos {minChars} caracteres, gravar um áudio ou enviar um vídeo para continuar.
           </p>
         </div>
       )}
