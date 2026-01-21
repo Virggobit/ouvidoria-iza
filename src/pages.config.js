@@ -4,6 +4,7 @@ import ConsultarProtocolo from './pages/ConsultarProtocolo';
 import Backoffice from './pages/Backoffice';
 import Acessibilidade from './pages/Acessibilidade';
 import Termos from './pages/Termos';
+import Auditoria from './pages/Auditoria';
 
 
 export const PAGES = {
@@ -13,6 +14,7 @@ export const PAGES = {
     "Backoffice": Backoffice,
     "Acessibilidade": Acessibilidade,
     "Termos": Termos,
+    "Auditoria": Auditoria,
 }
 
 export const pagesConfig = {
