@@ -11,6 +11,7 @@ const tipoLabels = {
   elogio: 'Elogio',
   sugestao: 'Sugestão',
   solicitacao: 'Solicitação',
+  informacao: 'Informação',
 };
 
 const tipoColors = {
@@ -19,6 +20,7 @@ const tipoColors = {
   elogio: 'bg-emerald-100 text-emerald-800',
   sugestao: 'bg-blue-100 text-blue-800',
   solicitacao: 'bg-purple-100 text-purple-800',
+  informacao: 'bg-cyan-100 text-cyan-800',
 };
 
 export default function RevisaoStep({ data, onChange, iaAnalysis, setIaAnalysis }) {
@@ -140,6 +142,18 @@ Classifique e retorne:
 
       {/* Resumo dos dados */}
       <div className="bg-white border border-gray-200 rounded-xl divide-y divide-gray-100">
+        {data.titulo && (
+          <div className="p-4 flex items-start gap-3">
+            <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <FileText className="w-5 h-5 text-indigo-600" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm text-gray-500">Título</p>
+              <p className="font-semibold text-gray-900">{data.titulo}</p>
+            </div>
+          </div>
+        )}
+
         <div className="p-4 flex items-start gap-3">
           <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
             <FileText className="w-5 h-5 text-blue-600" />

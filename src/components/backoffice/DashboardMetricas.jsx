@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ExportarRelatorio from '@/components/backoffice/ExportarRelatorio';
 import { 
   BarChart, 
   Bar, 
@@ -151,10 +152,13 @@ export default function DashboardMetricas({ manifestacoes }) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-gray-900">Dashboard de Métricas</h2>
-        <Button onClick={exportCSV} variant="outline">
-          <Download className="w-4 h-4 mr-2" />
-          Exportar CSV
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={exportCSV} variant="outline">
+            <Download className="w-4 h-4 mr-2" />
+            Exportar CSV
+          </Button>
+          <ExportarRelatorio />
+        </div>
       </div>
 
       {/* KPI Cards */}

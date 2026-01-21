@@ -1,9 +1,34 @@
-import React from 'react';
-import { User, Mail, Phone, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { User, Mail, Phone, ShieldCheck, AlertCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { validarEmail, validarTelefone, formatarTelefone } from './ValidacaoFormulario';
 
 export default function IdentificacaoStep({ data, onChange }) {
+  const [erros, setErros] = useState({});
+
+  const validarCampo = (campo, valor) => {
+    const novosErros = { ...erros };
+    
+    if (campo === 'email' && valor) {
+      if (!validarEmail(valor)) {
+        novosErros.email = 'E-mail inválido';
+      } else {
+        delete novosErros.email;
+      }
+    }
+    
+    if (campo === 'telefone' && valor) {
+      if (!validarTelefone(valor)) {
+        novosErros.telefone = 'Telefone inválido (use DDD + número)';
+      } else {
+        delete novosErros.telefone;
+      }
+    }
+    
+    setErros(novosErros);
+  };
+
   if (data.anonimo) {
     return (
       <div className="space-y-6">
@@ -75,14 +100,25 @@ export default function IdentificacaoStep({ data, onChange }) {
             id="email"
             type="email"
             value={data.email || ''}
-            onChange={(e) => onChange({ ...data, email: e.target.value })}
+            onChange={(e) => {
+              onChange({ ...data, email: e.target.value });
+              validarCampo('email', e.target.value);
+            }}
+            onBlur={(e) => validarCampo('email', e.target.value)}
             placeholder="seu.email@exemplo.com"
             className="h-12 text-base"
             required
           />
-          <p className="text-sm text-gray-500 mt-1">
-            Você receberá atualizações sobre sua manifestação por e-mail
-          </p>
+          {erros.email ? (
+            <div className="flex items-center gap-2 mt-1">
+              <AlertCircle className="w-4 h-4 text-red-500" />
+              <p className="text-sm text-red-600">{erros.email}</p>
+            </div>
+          ) : (
+            <p className="text-sm text-gray-500 mt-1">
+              Você receberá atualizações sobre sua manifestação por e-mail
+            </p>
+          )}
         </div>
 
         <div>
@@ -94,10 +130,25 @@ export default function IdentificacaoStep({ data, onChange }) {
             id="telefone"
             type="tel"
             value={data.telefone || ''}
-            onChange={(e) => onChange({ ...data, telefone: e.target.value })}
+            onChange={(e) => {
+              onChange({ ...data, telefone: e.target.value });
+              validarCampo('telefone', e.target.value);
+            }}
+            onBlur={(e) => {
+              validarCampo('telefone', e.target.value);
+              if (e.target.value && validarTelefone(e.target.value)) {
+                onChange({ ...data, telefone: formatarTelefone(e.target.value) });
+              }
+            }}
             placeholder="(61) 99999-9999"
             className="h-12 text-base"
           />
+          {erros.telefone && (
+            <div className="flex items-center gap-2 mt-1">
+              <AlertCircle className="w-4 h-4 text-red-500" />
+              <p className="text-sm text-red-600">{erros.telefone}</p>
+            </div>
+          )}
         </div>
       </div>
 
