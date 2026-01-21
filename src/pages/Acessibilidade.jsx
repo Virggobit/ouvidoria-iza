@@ -74,9 +74,9 @@ export default function Acessibilidade() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header */}
-      <header className="bg-[#0B3D2E] text-white py-4">
+      <header className="bg-gradient-to-r from-[#0066B3] to-[#004A8C] text-white py-6">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
                 <img 
@@ -87,10 +87,36 @@ export default function Acessibilidade() {
               </div>
               <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
-            <Link to={createPageUrl('Home')} className="text-sm hover:text-emerald-300 transition-colors flex items-center gap-1">
+            <Link to={createPageUrl('Home')} className="text-sm hover:text-white/80 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>
+          </div>
+          
+          {/* Logos Institucionais */}
+          <div className="flex items-center justify-center gap-8 pt-4 border-t border-white/20">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/1857dc0b5_logo-gdf-branca1.png" 
+              alt="Governo do Distrito Federal"
+              className="h-12 object-contain"
+            />
+            <div className="h-10 w-px bg-white/30" />
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-8 h-8 bg-[#F5A623] rounded flex items-center justify-center text-white font-bold text-sm">
+                  162
+                </div>
+                <div className="w-6 h-6 bg-[#0066B3] rounded flex items-center justify-center">
+                  <div className="w-3 h-3 bg-white rounded-sm" />
+                </div>
+                <div className="w-6 h-6 bg-[#00A650] rounded flex items-center justify-center">
+                  <div className="w-3 h-3 bg-white rounded-full" />
+                </div>
+              </div>
+              <span className="text-2xl font-bold text-gray-700" style={{ color: '#666' }}>Ouvidoria</span>
+              <span className="text-xs text-white/90">DO GOVERNO DO DISTRITO FEDERAL</span>
+              <span className="text-xs bg-[#0066B3] text-white px-2 py-0.5 rounded-full mt-1">participa.df.gov.br</span>
+            </div>
           </div>
         </div>
       </header>
@@ -174,8 +200,8 @@ export default function Acessibilidade() {
               <Card key={index}>
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-emerald-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6 text-blue-600" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 mb-2">
@@ -206,7 +232,7 @@ export default function Acessibilidade() {
                         <ul className="space-y-1">
                           {recurso.exemplos.map((ex, i) => (
                             <li key={i} className="text-xs text-gray-600 flex items-center gap-2">
-                              <Check className="w-3 h-3 text-emerald-600" />
+                              <Check className="w-3 h-3 text-blue-600" />
                               {ex}
                             </li>
                           ))}
@@ -216,7 +242,7 @@ export default function Acessibilidade() {
                         <ul className="space-y-1">
                           {recurso.niveis.map((nivel, i) => (
                             <li key={i} className="text-xs text-gray-600 flex items-center gap-2">
-                              <Check className="w-3 h-3 text-emerald-600" />
+                              <Check className="w-3 h-3 text-blue-600" />
                               {nivel}
                             </li>
                           ))}
@@ -226,7 +252,7 @@ export default function Acessibilidade() {
                         <ul className="space-y-1">
                           {recurso.formatos.map((formato, i) => (
                             <li key={i} className="text-xs text-gray-600 flex items-center gap-2">
-                              <Check className="w-3 h-3 text-emerald-600" />
+                              <Check className="w-3 h-3 text-blue-600" />
                               {formato}
                             </li>
                           ))}
@@ -236,7 +262,7 @@ export default function Acessibilidade() {
                         <ul className="space-y-1">
                           {recurso.principios.map((principio, i) => (
                             <li key={i} className="text-xs text-gray-600 flex items-center gap-2">
-                              <Check className="w-3 h-3 text-emerald-600" />
+                              <Check className="w-3 h-3 text-blue-600" />
                               {principio}
                             </li>
                           ))}
@@ -258,7 +284,7 @@ export default function Acessibilidade() {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-gray-900">WCAG 2.1 Nível AA</p>
                   <p className="text-sm text-gray-600">
@@ -267,7 +293,7 @@ export default function Acessibilidade() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-gray-900">e-MAG (Modelo de Acessibilidade em Governo Eletrônico)</p>
                   <p className="text-sm text-gray-600">
@@ -276,7 +302,7 @@ export default function Acessibilidade() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-gray-900">Lei Brasileira de Inclusão (LBI)</p>
                   <p className="text-sm text-gray-600">
@@ -289,16 +315,16 @@ export default function Acessibilidade() {
         </Card>
 
         {/* Feedback */}
-        <div className="mt-8 p-6 bg-emerald-50 rounded-xl border border-emerald-200">
-          <h3 className="font-semibold text-emerald-900 mb-2">
+        <div className="mt-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
+          <h3 className="font-semibold text-blue-900 mb-2">
             Encontrou alguma barreira de acessibilidade?
           </h3>
-          <p className="text-sm text-emerald-700 mb-4">
+          <p className="text-sm text-blue-700 mb-4">
             Estamos constantemente trabalhando para melhorar a acessibilidade do IZA+. 
             Se você encontrou alguma dificuldade, por favor nos informe.
           </p>
           <Link to={createPageUrl('NovaManifestacao')}>
-            <Button className="bg-emerald-600 hover:bg-emerald-700">
+            <Button className="bg-[#0066B3] hover:bg-[#004A8C]">
               Relatar problema de acessibilidade
             </Button>
           </Link>

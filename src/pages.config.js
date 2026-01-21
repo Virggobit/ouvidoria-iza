@@ -1,20 +1,20 @@
+import Acessibilidade from './pages/Acessibilidade';
+import Auditoria from './pages/Auditoria';
+import Backoffice from './pages/Backoffice';
+import ConsultarProtocolo from './pages/ConsultarProtocolo';
 import Home from './pages/Home';
 import NovaManifestacao from './pages/NovaManifestacao';
-import ConsultarProtocolo from './pages/ConsultarProtocolo';
-import Backoffice from './pages/Backoffice';
-import Acessibilidade from './pages/Acessibilidade';
 import Termos from './pages/Termos';
-import Auditoria from './pages/Auditoria';
 
 
 export const PAGES = {
+    "Acessibilidade": Acessibilidade,
+    "Auditoria": Auditoria,
+    "Backoffice": Backoffice,
+    "ConsultarProtocolo": ConsultarProtocolo,
     "Home": Home,
     "NovaManifestacao": NovaManifestacao,
-    "ConsultarProtocolo": ConsultarProtocolo,
-    "Backoffice": Backoffice,
-    "Acessibilidade": Acessibilidade,
     "Termos": Termos,
-    "Auditoria": Auditoria,
 }
 
 export const pagesConfig = {
