@@ -438,7 +438,6 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
           </div>
         </div>
         </div>
-        </div>
       </div>
     </div>
   );
