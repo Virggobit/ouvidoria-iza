@@ -9,6 +9,8 @@ import { Badge } from '@/components/ui/badge';
 import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import TimelineStatus from '@/components/manifestacao/TimelineStatus';
+import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
 
 const statusConfig = {
   recebido: { label: 'Recebido', color: 'bg-blue-100 text-blue-800', icon: Clock },
@@ -149,7 +151,7 @@ export default function ConsultarProtocolo() {
           {manifestacao && (
             <div className="space-y-6">
               {/* Status Card */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl p-6">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Protocolo</p>
@@ -162,11 +164,19 @@ export default function ConsultarProtocolo() {
                     {statusConfig[manifestacao.status]?.label}
                   </Badge>
                 </div>
+                {manifestacao.titulo && (
+                  <div className="mt-4 pt-4 border-t border-emerald-200">
+                    <p className="text-sm text-gray-600 mb-1">Assunto</p>
+                    <p className="font-medium text-gray-900">{manifestacao.titulo}</p>
+                  </div>
+                )}
               </div>
 
               {/* Timeline */}
+              <TimelineStatus manifestacao={manifestacao} />
+
               <div className="bg-white border border-gray-200 rounded-xl p-6">
-                <h3 className="font-semibold text-lg text-gray-900 mb-4">Histórico</h3>
+                <h3 className="font-semibold text-lg text-gray-900 mb-4">Histórico Detalhado</h3>
                 <div className="space-y-4">
                   <div className="flex gap-4">
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
@@ -260,6 +270,8 @@ export default function ConsultarProtocolo() {
           </div>
         </div>
       </main>
+
+      <ChatbotAssistente />
     </div>
   );
 }

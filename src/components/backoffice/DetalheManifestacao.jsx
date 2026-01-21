@@ -29,6 +29,7 @@ import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import NotificacaoEmail from '@/components/manifestacao/NotificacaoEmail';
 
 const tipoLabels = {
   denuncia: 'Denúncia',
@@ -151,9 +152,9 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-3 gap-6">
         {/* Left Column - Content */}
-        <div className="space-y-6">
+        <div className="lg:col-span-2 space-y-6">
           {/* IA Analysis */}
           {manifestacao.ia_resumo && (
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
@@ -430,6 +431,7 @@ export default function DetalheManifestacao({ manifestacao, onBack, onUpdate }) 
               )}
             </Button>
           </div>
+        </div>
         </div>
       </div>
     </div>

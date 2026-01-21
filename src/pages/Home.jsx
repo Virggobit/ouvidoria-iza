@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
 
 export default function Home() {
   return (
@@ -192,6 +193,8 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <ChatbotAssistente />
     </div>
   );
 }
