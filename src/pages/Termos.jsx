@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowLeft, Shield, Lock, Eye, FileText, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import VLibrasWidget from '@/components/iza/VLibrasWidget';
 
 export default function Termos() {
   return (
@@ -254,6 +255,7 @@ export default function Termos() {
           <p>Última atualização: Janeiro de 2025</p>
         </div>
       </main>
+      <VLibrasWidget />
     </div>
   );
 }
