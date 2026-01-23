@@ -14,6 +14,7 @@ import IdentificacaoStep from '@/components/manifestacao/IdentificacaoStep';
 import RevisaoStep from '@/components/manifestacao/RevisaoStep';
 import ProtocoloSuccess from '@/components/manifestacao/ProtocoloSuccess';
 import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
+import VLibrasWidget from '@/components/iza/VLibrasWidget';
 
 export default function NovaManifestacao() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -262,6 +263,7 @@ export default function NovaManifestacao() {
       </main>
 
       <ChatbotAssistente />
+      <VLibrasWidget />
     </div>
   );
 }

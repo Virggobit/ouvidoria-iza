@@ -11,6 +11,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import TimelineStatus from '@/components/manifestacao/TimelineStatus';
 import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
+import VLibrasWidget from '@/components/iza/VLibrasWidget';
 
 const statusConfig = {
   recebido: { label: 'Recebido', color: 'bg-blue-100 text-blue-800', icon: Clock },
@@ -273,6 +274,7 @@ export default function ConsultarProtocolo() {
       </main>
 
       <ChatbotAssistente />
+      <VLibrasWidget />
     </div>
   );
 }

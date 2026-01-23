@@ -19,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import FilaTriagem from '@/components/backoffice/FilaTriagem';
 import DetalheManifestacao from '@/components/backoffice/DetalheManifestacao';
 import DashboardMetricas from '@/components/backoffice/DashboardMetricas';
+import VLibrasWidget from '@/components/iza/VLibrasWidget';
 
 export default function Backoffice() {
   const [activeTab, setActiveTab] = useState('fila');
@@ -201,6 +202,7 @@ export default function Backoffice() {
           <DashboardMetricas manifestacoes={manifestacoes} />
         )}
       </main>
+      <VLibrasWidget />
     </div>
   );
 }
