@@ -8,6 +8,18 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
 
+// Script VLibras
+if (typeof window !== 'undefined') {
+  const script = document.createElement('script');
+  script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+  script.async = true;
+  document.head.appendChild(script);
+  
+  script.onload = () => {
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  };
+}
+
 export default function Acessibilidade() {
   const [altoContraste, setAltoContraste] = useState(false);
   const [tamanhoFonte, setTamanhoFonte] = useState(16);
