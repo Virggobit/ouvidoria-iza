@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
+import WhatsAppConnect from '@/components/iza/WhatsAppConnect';
 
 export default function Home() {
   return (
@@ -131,6 +132,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WhatsApp Integration */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              Atendimento pelo WhatsApp
+            </h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Registre e acompanhe suas manifestações de forma ainda mais prática através do WhatsApp
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <WhatsAppConnect />
+          </div>
+        </div>
+      </section>
+
       {/* Benefícios */}
       <section className="bg-slate-50 py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
@@ -150,6 +168,11 @@ export default function Home() {
                 icon: Shield, 
                 title: 'Anonimato Garantido', 
                 desc: 'Faça denúncias de forma anônima com total proteção da sua identidade.' 
+              },
+              { 
+                icon: MessageSquare, 
+                title: 'WhatsApp Integrado', 
+                desc: 'Registre manifestações por WhatsApp com texto, áudio, foto ou vídeo de forma prática.' 
               },
             ].map((benefit, i) => (
               <div key={i} className="text-center">
