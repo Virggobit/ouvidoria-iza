@@ -89,7 +89,7 @@ export default function Acessibilidade() {
               </div>
               <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
-            <Link to={createPageUrl('Home')} className="text-sm hover:text-white/80 transition-colors flex items-center gap-1">
+            <Link to={createPageUrl('Home')} className="text-sm hover:text-blue-200 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>

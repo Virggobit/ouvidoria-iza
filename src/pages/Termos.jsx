@@ -9,7 +9,7 @@ export default function Termos() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header */}
-      <header className="bg-[#0B3D2E] text-white py-4">
+      <header className="bg-[#004A8C] text-white py-4">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -22,7 +22,7 @@ export default function Termos() {
               </div>
               <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
-            <Link to={createPageUrl('Home')} className="text-sm hover:text-emerald-300 transition-colors flex items-center gap-1">
+            <Link to={createPageUrl('Home')} className="text-sm hover:text-blue-300 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>
@@ -62,7 +62,7 @@ export default function Termos() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <FileText className="w-5 h-5 text-emerald-600" />
+              <FileText className="w-5 h-5 text-blue-600" />
               Termos de Uso
             </CardTitle>
           </CardHeader>
@@ -110,7 +110,7 @@ export default function Termos() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Shield className="w-5 h-5 text-emerald-600" />
+              <Shield className="w-5 h-5 text-blue-600" />
               Privacidade e Proteção de Dados (LGPD)
             </CardTitle>
           </CardHeader>
@@ -193,7 +193,7 @@ export default function Termos() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Eye className="w-5 h-5 text-emerald-600" />
+              <Eye className="w-5 h-5 text-blue-600" />
               Uso de Inteligência Artificial
             </CardTitle>
           </CardHeader>
@@ -233,7 +233,7 @@ export default function Termos() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Lock className="w-5 h-5 text-emerald-600" />
+              <Lock className="w-5 h-5 text-blue-600" />
               Encarregado de Dados e Contato
             </CardTitle>
           </CardHeader>

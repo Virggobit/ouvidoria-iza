@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header */}
-      <header className="bg-[#0B3D2E] text-white">
+      <header className="bg-[#004A8C] text-white">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
@@ -48,7 +48,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0B3D2E] to-[#0E6B4E] text-white py-16 md:py-24">
+      <section className="bg-gradient-to-br from-[#004A8C] to-[#0066B3] text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -58,17 +58,17 @@ export default function Home() {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                 Mais integridade,<br />
-                <span className="text-emerald-300">mais transparência</span><br />
-                <span className="text-emerald-300">e mais controle social</span>
+                <span className="text-blue-300">mais transparência</span><br />
+                <span className="text-blue-300">e mais controle social</span>
               </h2>
-              <p className="text-lg text-emerald-100 mb-8 leading-relaxed">
+              <p className="text-lg text-blue-100 mb-8 leading-relaxed">
                 Registre sua manifestação de forma simples e acessível por texto, áudio, imagem ou vídeo. 
                 A IZA+ utiliza inteligência artificial para agilizar o atendimento 
                 e garantir que sua demanda chegue ao órgão certo.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to={createPageUrl('NovaManifestacao')}>
-                  <Button size="lg" className="w-full sm:w-auto bg-emerald-400 hover:bg-emerald-500 text-[#0B3D2E] font-semibold h-14 px-8 text-lg shadow-xl">
+                  <Button size="lg" className="w-full sm:w-auto bg-blue-400 hover:bg-blue-500 text-white font-semibold h-14 px-8 text-lg shadow-xl">
                     <FileText className="w-5 h-5 mr-2" />
                     Registrar Manifestação
                   </Button>
@@ -83,7 +83,7 @@ export default function Home() {
             </div>
             <div className="hidden md:flex justify-center">
               <div className="relative">
-                <div className="w-72 h-72 bg-emerald-400/20 rounded-full absolute -top-8 -left-8 animate-pulse" />
+                  <div className="w-72 h-72 bg-blue-400/20 rounded-full absolute -top-8 -left-8 animate-pulse" />
                 <div className="w-80 h-80 bg-white/10 backdrop-blur rounded-3xl p-8 relative z-10 flex items-center justify-center">
                   <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
@@ -114,7 +114,7 @@ export default function Home() {
               { name: 'Denúncia', desc: 'Relate irregularidades', color: 'bg-red-500', icon: '🚨' },
               { name: 'Reclamação', desc: 'Reclame de serviços', color: 'bg-orange-500', icon: '📢' },
               { name: 'Sugestão', desc: 'Proponha melhorias', color: 'bg-blue-500', icon: '💡' },
-              { name: 'Elogio', desc: 'Reconheça bom atendimento', color: 'bg-emerald-500', icon: '⭐' },
+              { name: 'Elogio', desc: 'Reconheça bom atendimento', color: 'bg-blue-500', icon: '⭐' },
             ].map((tipo) => (
               <Link key={tipo.name} to={createPageUrl('NovaManifestacao')}>
                 <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-0 shadow-md hover:-translate-y-1">
@@ -189,7 +189,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0B3D2E] text-white py-12">
+      <footer className="bg-[#004A8C] text-white py-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
@@ -202,16 +202,16 @@ export default function Home() {
               </div>
               <div>
                 <p className="font-semibold">IZA+ Ouvidoria</p>
-                <p className="text-xs text-blue-200">Governo do Distrito Federal</p>
+                <p className="text-xs text-blue-300">Governo do Distrito Federal</p>
               </div>
             </div>
             <div className="flex items-center gap-6 text-sm">
-              <a href="#" className="hover:text-emerald-300 transition-colors">Central 162</a>
-              <Link to={createPageUrl('Acessibilidade')} className="hover:text-emerald-300 transition-colors">Acessibilidade</Link>
-              <Link to={createPageUrl('Termos')} className="hover:text-emerald-300 transition-colors">Termos e Privacidade</Link>
+              <a href="#" className="hover:text-blue-300 transition-colors">Central 162</a>
+              <Link to={createPageUrl('Acessibilidade')} className="hover:text-blue-300 transition-colors">Acessibilidade</Link>
+              <Link to={createPageUrl('Termos')} className="hover:text-blue-300 transition-colors">Termos e Privacidade</Link>
             </div>
           </div>
-          <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-emerald-200">
+          <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-blue-200">
             <p>© 2025 Ouvidoria-Geral do Distrito Federal. Todos os direitos reservados.</p>
             <p className="mt-2 text-xs">Protótipo demonstrativo (MVP) - Desafio Participa DF</p>
           </div>

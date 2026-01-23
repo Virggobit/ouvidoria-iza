@@ -69,7 +69,7 @@ export default function Backoffice() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-[#0B3D2E] text-white shadow-lg">
+      <header className="bg-[#004A8C] text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -83,7 +83,7 @@ export default function Backoffice() {
                 </div>
                 <div>
                   <span className="font-semibold">IZA+ Backoffice</span>
-                  <p className="text-xs text-emerald-200">Triagem de Manifestações</p>
+                  <p className="text-xs text-blue-200">Triagem de Manifestações</p>
                 </div>
               </div>
             </div>
