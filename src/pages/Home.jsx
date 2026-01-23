@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
 import WhatsAppConnect from '@/components/iza/WhatsAppConnect';
+import VLibrasWidget from '@/components/iza/VLibrasWidget';
 
 export default function Home() {
   return (
@@ -218,6 +219,7 @@ export default function Home() {
       </footer>
 
       <ChatbotAssistente />
-    </div>
-  );
-}
+      <VLibrasWidget />
+      </div>
+      );
+      }
