@@ -86,6 +86,13 @@ export default function Backoffice() {
                   <p className="text-xs text-blue-200">Triagem de Manifestações</p>
                 </div>
               </div>
+              <div className="hidden lg:block pl-4 ml-4 border-l border-white/20">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
+                  alt="Participa DF"
+                  className="h-8 object-contain"
+                />
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <Link to={createPageUrl('Home')}>

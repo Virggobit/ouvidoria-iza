@@ -77,18 +77,27 @@ export default function ConsultarProtocolo() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Header */}
-      <header className="bg-[#004A8C] text-white py-4">
+      <header className="bg-[#004A8C] text-white py-3">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                    alt="IZA"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="font-semibold">IZA+ Ouvidoria</span>
+              </div>
+              <div className="hidden md:block pl-4 ml-4 border-l border-white/20">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
-                  alt="IZA"
-                  className="w-full h-full object-cover"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
+                  alt="Participa DF"
+                  className="h-8 object-contain"
                 />
               </div>
-              <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
             <Link to={createPageUrl('Home')} className="text-sm hover:text-blue-300 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
