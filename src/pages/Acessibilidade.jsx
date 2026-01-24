@@ -76,49 +76,32 @@ export default function Acessibilidade() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <VLibrasWidget />
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#0066B3] to-[#004A8C] text-white py-6">
+      <header className="bg-[#004A8C] text-white py-3">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                    alt="IZA"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="font-semibold">IZA+ Ouvidoria</span>
+              </div>
+              <div className="hidden md:block pl-4 ml-4 border-l border-white/20">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
-                  alt="IZA"
-                  className="w-full h-full object-cover"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
+                  alt="Participa DF"
+                  className="h-8 object-contain"
                 />
               </div>
-              <span className="font-semibold">IZA+ Ouvidoria</span>
             </div>
             <Link to={createPageUrl('Home')} className="text-sm hover:text-blue-200 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Voltar ao início
             </Link>
-          </div>
-          
-          {/* Logos Institucionais */}
-          <div className="flex items-center justify-center gap-8 pt-4 border-t border-white/20">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/1857dc0b5_logo-gdf-branca1.png" 
-              alt="Governo do Distrito Federal"
-              className="h-12 object-contain"
-            />
-            <div className="h-10 w-px bg-white/30" />
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 bg-[#F5A623] rounded flex items-center justify-center text-white font-bold text-sm">
-                  162
-                </div>
-                <div className="w-6 h-6 bg-[#0066B3] rounded flex items-center justify-center">
-                  <div className="w-3 h-3 bg-white rounded-sm" />
-                </div>
-                <div className="w-6 h-6 bg-[#00A650] rounded flex items-center justify-center">
-                  <div className="w-3 h-3 bg-white rounded-full" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold text-gray-700" style={{ color: '#666' }}>Ouvidoria</span>
-              <span className="text-xs text-white/90">DO GOVERNO DO DISTRITO FEDERAL</span>
-              <span className="text-xs bg-[#0066B3] text-white px-2 py-0.5 rounded-full mt-1">participa.df.gov.br</span>
-            </div>
           </div>
         </div>
       </header>
