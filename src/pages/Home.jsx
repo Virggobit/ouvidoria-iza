@@ -42,7 +42,7 @@ export default function Home() {
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
                   alt="Participa DF"
-                  className="h-10 object-contain"
+                  className="h-40 object-contain"
                 />
               </div>
             </div>
