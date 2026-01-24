@@ -183,11 +183,16 @@ export default function NovaManifestacao() {
                 </div>
                 <span className="font-semibold">IZA+ Ouvidoria</span>
               </div>
-              <div className="hidden md:block pl-4 ml-4 border-l border-white/20">
+              <div className="hidden md:flex items-center gap-4 pl-4 ml-4 border-l border-white/20">
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
                   alt="Participa DF"
                   className="h-32 object-contain"
+                />
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/bbe6cb09c_Capturadetela2026-01-24135440.png" 
+                  alt="Ouvidoria do Governo do Distrito Federal"
+                  className="h-20 object-contain"
                 />
               </div>
             </div>
