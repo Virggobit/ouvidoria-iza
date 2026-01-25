@@ -141,7 +141,7 @@ export default function TipoStep({ data, onChange }) {
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/b56eb8397_IZA2.jpg" 
             alt="IZA+"
-            className="w-16 h-16 object-contain flex-shrink-0"
+            className="w-48 h-48 object-contain flex-shrink-0"
           />
           <div className="flex-1">
             <p className="text-sm text-amber-900 font-medium mb-3">
