@@ -5,6 +5,7 @@ import ConsultarProtocolo from './pages/ConsultarProtocolo';
 import Home from './pages/Home';
 import NovaManifestacao from './pages/NovaManifestacao';
 import Termos from './pages/Termos';
+import FAQ from './pages/FAQ';
 
 
 export const PAGES = {
@@ -15,6 +16,7 @@ export const PAGES = {
     "Home": Home,
     "NovaManifestacao": NovaManifestacao,
     "Termos": Termos,
+    "FAQ": FAQ,
 }
 
 export const pagesConfig = {
