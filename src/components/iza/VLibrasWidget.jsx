@@ -59,7 +59,7 @@ export default function VLibrasWidget() {
           content: '' !important;
           width: 48px !important;
           height: 48px !important;
-          background-image: url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png') !important;
+          background-image: url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png') !important;
           background-size: cover !important;
           background-position: center !important;
           border-radius: 50% !important;

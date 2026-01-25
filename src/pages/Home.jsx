@@ -28,7 +28,7 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
                   <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
                     alt="IZA Robô"
                     className="w-full h-full object-cover"
                   />
@@ -103,7 +103,7 @@ export default function Home() {
                   <div className="w-72 h-72 bg-blue-400/20 rounded-full absolute -top-8 -left-8 animate-pulse" />
                 <div className="w-80 h-80 bg-white/10 backdrop-blur rounded-3xl p-8 relative z-10 flex items-center justify-center">
                   <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
                     alt="IZA+ Robô Assistente"
                     className="w-full h-full object-contain drop-shadow-2xl animate-float"
                   />
@@ -212,7 +212,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a5d8dd8af_iza-1.png" 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
                   alt="IZA"
                   className="w-full h-full object-cover"
                 />
