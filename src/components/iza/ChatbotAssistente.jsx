@@ -73,7 +73,7 @@ Se for sobre:
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-[#0E6B4E] hover:bg-[#0B3D2E] text-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 z-50 group"
+          className="fixed bottom-24 right-6 w-16 h-16 bg-[#0E6B4E] hover:bg-[#0B3D2E] text-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 z-[9999] group"
           aria-label="Abrir assistente IZA+"
         >
           <div className="relative">
@@ -89,7 +89,7 @@ Se for sobre:
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 max-w-[calc(100vw-3rem)] h-[600px] max-h-[80vh] bg-white rounded-2xl shadow-2xl flex flex-col z-50 border border-gray-200">
+        <div className="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] h-[600px] max-h-[80vh] bg-white rounded-2xl shadow-2xl flex flex-col z-[9999] border border-gray-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0B3D2E] to-[#0E6B4E] text-white p-4 rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
