@@ -1,9 +1,10 @@
 import React from 'react';
-import { AlertTriangle, MessageSquare, ThumbsUp, Lightbulb, HelpCircle } from 'lucide-react';
+import { AlertTriangle, MessageSquare, ThumbsUp, Lightbulb, HelpCircle, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 const tipos = [
   {
@@ -119,7 +120,7 @@ export default function TipoStep({ data, onChange }) {
       </div>
 
       <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <div>
             <Label htmlFor="anonimo" className="text-base font-semibold text-gray-900">
               Deseja fazer o registro de forma anônima?
@@ -134,6 +135,29 @@ export default function TipoStep({ data, onChange }) {
             onCheckedChange={(checked) => onChange({ ...data, anonimo: checked })}
             aria-describedby="anonimo-desc"
           />
+        </div>
+
+        <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 flex gap-4 items-start">
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
+            alt="IZA+"
+            className="w-16 h-16 object-contain flex-shrink-0"
+          />
+          <div className="flex-1">
+            <p className="text-sm text-amber-900 font-medium mb-3">
+              Esse registro pode ser feito de forma anônima. Porém ao escolher o anonimato você <strong>NÃO PODERÁ ACOMPANHAR</strong> o andamento da sua manifestação.
+            </p>
+            <a 
+              href="https://www.sinj.df.gov.br/sinj/Norma/c87d4625386745569ef03028e6c79397/Instru_o_Normativa_1_05_05_2017.html" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" size="sm" className="bg-white hover:bg-amber-50 border-amber-400 text-amber-900">
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Base Legal
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
