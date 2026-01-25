@@ -139,7 +139,7 @@ export default function TipoStep({ data, onChange }) {
 
         <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 flex gap-4 items-start">
           <img 
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/b56eb8397_IZA2.jpg" 
             alt="IZA+"
             className="w-16 h-16 object-contain flex-shrink-0"
           />
