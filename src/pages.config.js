@@ -58,6 +58,7 @@ import Notificacoes from './pages/Notificacoes';
 import NovaManifestacao from './pages/NovaManifestacao';
 import Offline from './pages/Offline';
 import Termos from './pages/Termos';
+import AcessoBackoffice from './pages/AcessoBackoffice';
 import __Layout from './Layout.jsx';
 
 
@@ -73,6 +74,7 @@ export const PAGES = {
     "NovaManifestacao": NovaManifestacao,
     "Offline": Offline,
     "Termos": Termos,
+    "AcessoBackoffice": AcessoBackoffice,
 }
 
 export const pagesConfig = {
