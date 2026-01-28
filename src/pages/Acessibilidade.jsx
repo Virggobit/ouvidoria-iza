@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowLeft, Eye, Type, Palette, Zap, Keyboard, Volume2, Check } from 'lucide-react';
+import { ArrowLeft, Eye, Type, Palette, Zap, Keyboard, Volume2, Check, Mic, Image, Video, MessageSquare, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
@@ -117,6 +117,135 @@ export default function Acessibilidade() {
             que todas as pessoas possam registrar e acompanhar suas manifestações.
           </p>
         </div>
+
+        {/* Seção: Como Registrar Manifestação */}
+        <Card className="mb-8 border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-xl">
+              <FileText className="w-6 h-6 text-blue-600" />
+              Como Registrar sua Manifestação de Forma Acessível
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600 mb-6">
+              A IZA+ oferece múltiplas formas de registrar sua manifestação, garantindo que todos possam participar independentemente de suas necessidades ou preferências.
+            </p>
+
+            <div className="space-y-4">
+              {/* Texto */}
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Type className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">📝 Registro por Texto</h4>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Digite sua manifestação usando o teclado. Ideal para quem prefere escrever ou usa tecnologias assistivas como leitores de tela.
+                    </p>
+                    <ul className="space-y-1 text-xs text-gray-600">
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Compatível com leitores de tela (NVDA, JAWS, VoiceOver)</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Navegação por teclado (Tab, Enter, Setas)</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Sem limite de caracteres</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Áudio */}
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mic className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">🎤 Registro por Áudio</h4>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Grave sua manifestação com sua voz. Perfeito para quem tem dificuldade com escrita ou prefere se expressar falando.
+                    </p>
+                    <ul className="space-y-1 text-xs text-gray-600">
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Gravação direta pelo navegador</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Não precisa instalar aplicativo</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Pode ouvir antes de enviar</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Ideal para pessoas com dificuldades de digitação</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Imagem */}
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Image className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">📷 Registro por Imagem</h4>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Anexe fotos como prova ou complemento da sua manifestação. Mostre visualmente o problema.
+                    </p>
+                    <ul className="space-y-1 text-xs text-gray-600">
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Aceita fotos do celular ou computador</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Até 5 imagens por manifestação</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Análise automática pela IA</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Formatos: JPG, PNG, WEBP</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Vídeo */}
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Video className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">🎥 Registro por Vídeo</h4>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Envie vídeos para explicar situações complexas ou mostrar problemas em movimento.
+                    </p>
+                    <ul className="space-y-1 text-xs text-gray-600">
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Upload de vídeos até 100MB</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Formatos: MP4, MOV, AVI</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Análise automática do conteúdo</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Útil para situações em tempo real</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* WhatsApp */}
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MessageSquare className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">💬 Registro pelo WhatsApp</h4>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Use o aplicativo que você já conhece para enviar sua manifestação de qualquer forma.
+                    </p>
+                    <ul className="space-y-1 text-xs text-gray-600">
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Texto, áudio, foto ou vídeo</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Conversa natural com a IZA+</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Atualizações automáticas</li>
+                      <li className="flex items-center gap-2"><Check className="w-3 h-3 text-green-600" /> Familiar e acessível</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-6 border-t">
+              <Link to={createPageUrl('NovaManifestacao')}>
+                <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
+                  Registrar Manifestação Agora
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Controles de Acessibilidade */}
         <Card className="mb-8">
