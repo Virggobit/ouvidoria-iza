@@ -55,7 +55,7 @@ export default function Home() {
                 <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors">
                   Consultar Protocolo
                 </Link>
-                <Link to={createPageUrl('LoginBackoffice')} className="text-sm hover:text-yellow-300 transition-colors">
+                <Link to={createPageUrl('AcessoBackoffice')} className="text-sm hover:text-yellow-300 transition-colors">
                   Área Interna
                 </Link>
               </nav>
@@ -78,7 +78,7 @@ export default function Home() {
           <Link to={createPageUrl('ConsultarProtocolo')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
             Consultar Protocolo
           </Link>
-          <Link to={createPageUrl('LoginBackoffice')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+          <Link to={createPageUrl('AcessoBackoffice')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
             Área Interna
           </Link>
         </div>

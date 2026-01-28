@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { 
   LayoutDashboard, 
@@ -22,6 +22,7 @@ import DashboardMetricas from '@/components/backoffice/DashboardMetricas';
 import VLibrasWidget from '@/components/iza/VLibrasWidget';
 
 export default function Backoffice() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('fila');
   const [manifestacoes, setManifestacoes] = useState([]);
   const [selectedManifestacao, setSelectedManifestacao] = useState(null);
@@ -29,6 +30,14 @@ export default function Backoffice() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('todos');
   const [filterPrioridade, setFilterPrioridade] = useState('todos');
+
+  // Verificar autenticação
+  useEffect(() => {
+    const auth = localStorage.getItem('backoffice-auth');
+    if (!auth) {
+      navigate(createPageUrl('AcessoBackoffice'));
+    }
+  }, [navigate]);
 
   useEffect(() => {
     loadManifestacoes();
@@ -95,12 +104,18 @@ export default function Backoffice() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Link to={createPageUrl('Home')}>
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sair
-                </Button>
-              </Link>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-white hover:bg-white/10"
+                onClick={() => {
+                  localStorage.removeItem('backoffice-auth');
+                  navigate(createPageUrl('AcessoBackoffice'));
+                }}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sair
+              </Button>
             </div>
           </div>
         </div>
