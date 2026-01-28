@@ -47,6 +47,9 @@ export default function Home() {
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
+              <Link to={createPageUrl('Acessibilidade')} className="text-sm hover:text-yellow-300 transition-colors">
+                Acessibilidade
+              </Link>
               <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors">
                 Consultar Protocolo
               </Link>
