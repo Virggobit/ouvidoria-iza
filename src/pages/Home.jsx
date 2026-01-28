@@ -42,24 +42,46 @@ export default function Home() {
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
                   alt="Participa DF"
-                  className="h-40 object-contain"
+                  className="h-32 lg:h-40 object-contain"
                 />
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link to={createPageUrl('Acessibilidade')} className="text-sm hover:text-yellow-300 transition-colors">
-                Acessibilidade
-              </Link>
-              <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors">
-                Consultar Protocolo
-              </Link>
-              <Link to={createPageUrl('Backoffice')} className="text-sm hover:text-yellow-300 transition-colors">
-                Área Interna
-              </Link>
-            </nav>
+            <div className="flex items-center gap-3">
+              <nav className="hidden md:flex items-center gap-6">
+                <Link to={createPageUrl('Acessibilidade')} className="text-sm hover:text-yellow-300 transition-colors">
+                  Acessibilidade
+                </Link>
+                <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors">
+                  Consultar Protocolo
+                </Link>
+                <Link to={createPageUrl('Backoffice')} className="text-sm hover:text-yellow-300 transition-colors">
+                  Área Interna
+                </Link>
+              </nav>
+              <button className="md:hidden text-white p-2" onClick={() => document.getElementById('mobile-menu').classList.toggle('hidden')}>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      <div id="mobile-menu" className="hidden md:hidden bg-[#004A8C] border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">
+          <Link to={createPageUrl('Acessibilidade')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+            Acessibilidade
+          </Link>
+          <Link to={createPageUrl('ConsultarProtocolo')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+            Consultar Protocolo
+          </Link>
+          <Link to={createPageUrl('Backoffice')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+            Área Interna
+          </Link>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#004A8C] to-[#0066B3] text-white py-16 md:py-24">

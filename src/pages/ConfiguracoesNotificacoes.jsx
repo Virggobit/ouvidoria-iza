@@ -203,7 +203,7 @@ export default function ConfiguracoesNotificacoes() {
           </CardContent>
         </Card>
 
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <Button
             onClick={salvarPreferencias}
             disabled={saving}
@@ -222,8 +222,8 @@ export default function ConfiguracoesNotificacoes() {
               </>
             )}
           </Button>
-          <Link to={createPageUrl('Notificacoes')}>
-            <Button variant="outline" size="lg">
+          <Link to={createPageUrl('Notificacoes')} className="sm:w-auto">
+            <Button variant="outline" size="lg" className="w-full">
               Cancelar
             </Button>
           </Link>

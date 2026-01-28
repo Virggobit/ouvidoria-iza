@@ -50,13 +50,13 @@
 import Acessibilidade from './pages/Acessibilidade';
 import Auditoria from './pages/Auditoria';
 import Backoffice from './pages/Backoffice';
+import ConfiguracoesNotificacoes from './pages/ConfiguracoesNotificacoes';
 import ConsultarProtocolo from './pages/ConsultarProtocolo';
 import FAQ from './pages/FAQ';
 import Home from './pages/Home';
+import Notificacoes from './pages/Notificacoes';
 import NovaManifestacao from './pages/NovaManifestacao';
 import Termos from './pages/Termos';
-import Notificacoes from './pages/Notificacoes';
-import ConfiguracoesNotificacoes from './pages/ConfiguracoesNotificacoes';
 import __Layout from './Layout.jsx';
 
 
@@ -64,13 +64,13 @@ export const PAGES = {
     "Acessibilidade": Acessibilidade,
     "Auditoria": Auditoria,
     "Backoffice": Backoffice,
+    "ConfiguracoesNotificacoes": ConfiguracoesNotificacoes,
     "ConsultarProtocolo": ConsultarProtocolo,
     "FAQ": FAQ,
     "Home": Home,
+    "Notificacoes": Notificacoes,
     "NovaManifestacao": NovaManifestacao,
     "Termos": Termos,
-    "Notificacoes": Notificacoes,
-    "ConfiguracoesNotificacoes": ConfiguracoesNotificacoes,
 }
 
 export const pagesConfig = {

@@ -3,6 +3,24 @@ css
 @tailwind components;
 @tailwind utilities;
 
+/* Garantir que o viewport seja responsivo */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+}
+
+/* Prevenir zoom horizontal em mobile */
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -106,19 +106,30 @@ export default function NotificacaoButton() {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-96 p-0" align="end">
+      <PopoverContent className="w-[calc(100vw-2rem)] sm:w-96 p-0" align="end">
         <div className="flex items-center justify-between p-4 border-b">
           <h3 className="font-semibold">Notificações</h3>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {naoLidas > 0 && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={marcarTodasComoLidas}
-                className="text-xs"
+                className="text-xs hidden sm:flex"
               >
                 <Check className="w-4 h-4 mr-1" />
                 Marcar todas como lidas
+              </Button>
+            )}
+            {naoLidas > 0 && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={marcarTodasComoLidas}
+                className="h-8 w-8 sm:hidden"
+                title="Marcar todas como lidas"
+              >
+                <Check className="w-4 h-4" />
               </Button>
             )}
             <Link to={createPageUrl('ConfiguracoesNotificacoes')}>
