@@ -16,6 +16,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
 import WhatsAppConnect from '@/components/iza/WhatsAppConnect';
 import VLibrasWidget from '@/components/iza/VLibrasWidget';
+import InstallPrompt from '@/components/pwa/InstallPrompt';
 
 export default function Home() {
   return (
@@ -263,6 +264,7 @@ export default function Home() {
 
       <ChatbotAssistente />
       <VLibrasWidget />
+      <InstallPrompt />
       </div>
       );
       }
