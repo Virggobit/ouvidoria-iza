@@ -18,10 +18,11 @@ import WhatsAppConnect from '@/components/iza/WhatsAppConnect';
 import VLibrasWidget from '@/components/iza/VLibrasWidget';
 import InstallPrompt from '@/components/pwa/InstallPrompt';
 import BarraAcessibilidade from '@/components/acessibilidade/BarraAcessibilidade';
+import BarraNavegacaoInferior from '@/components/navegacao/BarraNavegacaoInferior';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white pb-16 md:pb-0">
       {/* Skip to main content link */}
       <a 
         href="#main-content" 
@@ -277,6 +278,7 @@ export default function Home() {
       <ChatbotAssistente />
       <VLibrasWidget />
       <InstallPrompt />
-      </div>
-      );
-      }
+      <BarraNavegacaoInferior />
+    </div>
+  );
+}
