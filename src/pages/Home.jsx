@@ -21,6 +21,14 @@ import InstallPrompt from '@/components/pwa/InstallPrompt';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Skip to main content link */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
+      >
+        Pular para o conteúdo principal
+      </a>
+      
       {/* Header */}
       <header className="bg-[#004A8C] text-white">
         <div className="max-w-6xl mx-auto px-4 py-3">
@@ -85,7 +93,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#004A8C] to-[#0066B3] text-white py-16 md:py-24">
+      <section id="main-content" className="bg-gradient-to-br from-[#004A8C] to-[#0066B3] text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
