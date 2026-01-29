@@ -54,11 +54,18 @@ export default function Home() {
                 </div>
               </div>
               <div className="hidden lg:flex items-center gap-4 ml-4 pl-4 border-l border-white/20">
-                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
-                  alt="Participa DF"
-                  className="h-32 lg:h-40 object-contain"
-                />
+                <a 
+                  href="https://www.participa.df.gov.br/static/faq-participa-df" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
+                    alt="Participa DF"
+                    className="h-32 lg:h-40 object-contain"
+                  />
+                </a>
               </div>
             </div>
             <div className="flex items-center gap-3">
