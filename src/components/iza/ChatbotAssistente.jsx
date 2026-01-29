@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { MessageCircle, X, Send, Bot, RotateCcw, Clock, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { base44 } from '@/api/base44Client';
+import { useLocation } from 'react-router-dom';
 
 const perguntasFrequentes = [
   'Como registrar uma denúncia?',
   'Posso fazer de forma anônima?',
   'Quanto tempo leva para ter resposta?',
   'Como acompanho minha manifestação?',
+  'Quais tipos de manifestação existem?',
+  'Como funciona o anonimato?',
 ];
 
+const mensagensProativas = {
+  '/NovaManifestacao': 'Vejo que você está registrando uma manifestação! Posso ajudar explicando o processo ou tirando dúvidas. 😊',
+  '/ConsultarProtocolo': 'Precisa de ajuda para consultar seu protocolo? Estou aqui para ajudar!',
+  '/FAQ': 'Está procurando respostas? Posso ajudar com suas dúvidas sobre o sistema!',
+};
+
+const STORAGE_KEY = 'iza_chat_history';
+
 export default function ChatbotAssistente() {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [currentConversationId, setCurrentConversationId] = useState(null);
+  const [conversations, setConversations] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [showFAQ, setShowFAQ] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -22,6 +38,67 @@ export default function ChatbotAssistente() {
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [hasShownProactiveMessage, setHasShownProactiveMessage] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  // Carregar histórico do localStorage
+  useEffect(() => {
+    const savedHistory = localStorage.getItem(STORAGE_KEY);
+    if (savedHistory) {
+      try {
+        setConversations(JSON.parse(savedHistory));
+      } catch (e) {
+        console.error('Erro ao carregar histórico:', e);
+      }
+    }
+  }, []);
+
+  // Salvar conversa no histórico
+  const saveConversation = () => {
+    if (messages.length > 1) {
+      const newConversation = {
+        id: currentConversationId || Date.now(),
+        timestamp: new Date().toISOString(),
+        preview: messages[messages.length - 1].content.substring(0, 50) + '...',
+        messages: messages,
+      };
+
+      const updatedConversations = [
+        newConversation,
+        ...conversations.filter(c => c.id !== newConversation.id)
+      ].slice(0, 10); // Manter apenas últimas 10 conversas
+
+      setConversations(updatedConversations);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedConversations));
+      setCurrentConversationId(newConversation.id);
+    }
+  };
+
+  // Scroll automático para última mensagem
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  // Mensagem proativa baseada na página
+  useEffect(() => {
+    if (isOpen && !hasShownProactiveMessage) {
+      const mensagemProativa = mensagensProativas[location.pathname];
+      if (mensagemProativa && messages.length === 1) {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: mensagemProativa
+          }]);
+          setHasShownProactiveMessage(true);
+        }, 1500);
+      }
+    }
+  }, [location.pathname, isOpen, hasShownProactiveMessage, messages.length]);
+
+  // Reset mensagem proativa ao trocar de página
+  useEffect(() => {
+    setHasShownProactiveMessage(false);
+  }, [location.pathname]);
 
   const handleSendMessage = async (text = inputText) => {
     if (!text.trim()) return;
@@ -53,6 +130,9 @@ Se for sobre:
 
       const assistantMessage = { role: 'assistant', content: response };
       setMessages(prev => [...prev, assistantMessage]);
+      
+      // Salvar conversa após resposta
+      setTimeout(saveConversation, 500);
     } catch (error) {
       console.error('Erro no chat:', error);
       setMessages(prev => [...prev, {
@@ -64,7 +144,27 @@ Se for sobre:
   };
 
   const handleQuickQuestion = (question) => {
+    setShowFAQ(false);
     handleSendMessage(question);
+  };
+
+  const loadConversation = (conversation) => {
+    setMessages(conversation.messages);
+    setCurrentConversationId(conversation.id);
+    setShowHistory(false);
+  };
+
+  const startNewConversation = () => {
+    setMessages([
+      {
+        role: 'assistant',
+        content: 'Olá! Sou a IZA+, sua assistente virtual. Como posso ajudar você hoje? 😊',
+      },
+    ]);
+    setCurrentConversationId(null);
+    setShowHistory(false);
+    setShowFAQ(false);
+    setHasShownProactiveMessage(false);
   };
 
   return (
@@ -105,57 +205,136 @@ Se for sobre:
                 <p className="text-xs text-emerald-200">Assistente Virtual</p>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(false)}
-              className="text-white hover:bg-white/10"
-            >
-              <X className="w-5 h-5" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowFAQ(!showFAQ)}
+                className="text-white hover:bg-white/10"
+                title="Sugestões FAQ"
+              >
+                <Lightbulb className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowHistory(!showHistory)}
+                className="text-white hover:bg-white/10"
+                title="Histórico de conversas"
+              >
+                <Clock className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={startNewConversation}
+                className="text-white hover:bg-white/10"
+                title="Nova conversa"
+              >
+                <RotateCcw className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(false)}
+                className="text-white hover:bg-white/10"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
           </div>
+
+          {/* Histórico de Conversas */}
+          {showHistory && (
+            <div className="flex-1 overflow-y-auto p-4 bg-slate-50">
+              <div className="mb-3">
+                <h4 className="font-semibold text-gray-900 mb-2">Conversas Anteriores</h4>
+                {conversations.length === 0 ? (
+                  <p className="text-sm text-gray-500">Nenhuma conversa salva ainda.</p>
+                ) : (
+                  <div className="space-y-2">
+                    {conversations.map((conv) => (
+                      <button
+                        key={conv.id}
+                        onClick={() => loadConversation(conv)}
+                        className="w-full text-left p-3 bg-white border border-gray-200 rounded-lg hover:bg-emerald-50 transition-colors"
+                      >
+                        <p className="text-xs text-gray-500 mb-1">
+                          {new Date(conv.timestamp).toLocaleString('pt-BR')}
+                        </p>
+                        <p className="text-sm text-gray-700 line-clamp-2">{conv.preview}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Sugestões FAQ */}
+          {showFAQ && (
+            <div className="flex-1 overflow-y-auto p-4 bg-slate-50">
+              <div className="mb-3">
+                <h4 className="font-semibold text-gray-900 mb-2">Perguntas Frequentes</h4>
+                <div className="space-y-2">
+                  {perguntasFrequentes.map((pergunta, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleQuickQuestion(pergunta)}
+                      className="w-full text-left p-3 bg-white border border-gray-200 rounded-lg hover:bg-emerald-50 transition-colors text-sm"
+                    >
+                      {pergunta}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={cn(
-                  'flex',
-                  message.role === 'user' ? 'justify-end' : 'justify-start'
-                )}
-              >
+          {!showHistory && !showFAQ && (
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+              {messages.map((message, index) => (
                 <div
+                  key={index}
                   className={cn(
-                    'max-w-[80%] rounded-2xl px-4 py-2.5',
-                    message.role === 'user'
-                      ? 'bg-[#0E6B4E] text-white'
-                      : 'bg-white border border-gray-200 text-gray-900'
+                    'flex',
+                    message.role === 'user' ? 'justify-end' : 'justify-start'
                   )}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                </div>
-              </div>
-            ))}
-            {isTyping && (
-              <div className="flex justify-start">
-                <div className="bg-white border border-gray-200 rounded-2xl px-4 py-2.5">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div
+                    className={cn(
+                      'max-w-[80%] rounded-2xl px-4 py-2.5',
+                      message.role === 'user'
+                        ? 'bg-[#0E6B4E] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    )}
+                  >
+                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
+              ))}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="bg-white border border-gray-200 rounded-2xl px-4 py-2.5">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          )}
 
           {/* Quick Questions */}
-          {messages.length === 1 && (
+          {!showHistory && !showFAQ && messages.length === 1 && (
             <div className="px-4 py-2 border-t bg-white">
-              <p className="text-xs text-gray-500 mb-2">Perguntas frequentes:</p>
+              <p className="text-xs text-gray-500 mb-2">Sugestões rápidas:</p>
               <div className="flex flex-wrap gap-2">
-                {perguntasFrequentes.map((pergunta, i) => (
+                {perguntasFrequentes.slice(0, 4).map((pergunta, i) => (
                   <button
                     key={i}
                     onClick={() => handleQuickQuestion(pergunta)}
@@ -169,31 +348,33 @@ Se for sobre:
           )}
 
           {/* Input */}
-          <div className="p-4 border-t bg-white rounded-b-2xl">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSendMessage();
-              }}
-              className="flex gap-2"
-            >
-              <Input
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder="Digite sua pergunta..."
-                className="flex-1"
-                disabled={isTyping}
-              />
-              <Button
-                type="submit"
-                size="icon"
-                disabled={!inputText.trim() || isTyping}
-                className="bg-[#0E6B4E] hover:bg-[#0B3D2E]"
+          {!showHistory && !showFAQ && (
+            <div className="p-4 border-t bg-white rounded-b-2xl">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSendMessage();
+                }}
+                className="flex gap-2"
               >
-                <Send className="w-4 h-4" />
-              </Button>
-            </form>
-          </div>
+                <Input
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  placeholder="Digite sua pergunta..."
+                  className="flex-1"
+                  disabled={isTyping}
+                />
+                <Button
+                  type="submit"
+                  size="icon"
+                  disabled={!inputText.trim() || isTyping}
+                  className="bg-[#0E6B4E] hover:bg-[#0B3D2E]"
+                >
+                  <Send className="w-4 h-4" />
+                </Button>
+              </form>
+            </div>
+          )}
         </div>
       )}
     </>
