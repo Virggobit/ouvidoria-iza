@@ -2,32 +2,13 @@ import React, { useState } from 'react';
 import { User, Mail, Phone, ShieldCheck, AlertCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { validarEmail, validarTelefone, formatarTelefone } from './ValidacaoFormulario';
+import { ValidationFeedback, formatarTelefone } from './FormValidation';
+import { cn } from '@/lib/utils';
 
 export default function IdentificacaoStep({ data, onChange }) {
-  const [erros, setErros] = useState({});
+  const [touched, setTouched] = useState({ nome: false, email: false, telefone: false });
 
-  const validarCampo = (campo, valor) => {
-    const novosErros = { ...erros };
-    
-    if (campo === 'email' && valor) {
-      if (!validarEmail(valor)) {
-        novosErros.email = 'E-mail inválido';
-      } else {
-        delete novosErros.email;
-      }
-    }
-    
-    if (campo === 'telefone' && valor) {
-      if (!validarTelefone(valor)) {
-        novosErros.telefone = 'Telefone inválido (use DDD + número)';
-      } else {
-        delete novosErros.telefone;
-      }
-    }
-    
-    setErros(novosErros);
-  };
+
 
   if (data.anonimo) {
     return (
@@ -84,10 +65,23 @@ export default function IdentificacaoStep({ data, onChange }) {
             id="nome"
             type="text"
             value={data.nome || ''}
-            onChange={(e) => onChange({ ...data, nome: e.target.value })}
+            onChange={(e) => {
+              onChange({ ...data, nome: e.target.value });
+              if (!touched.nome) setTouched({ ...touched, nome: true });
+            }}
+            onBlur={() => setTouched({ ...touched, nome: true })}
             placeholder="Digite seu nome completo"
-            className="h-12 text-base"
+            className={cn(
+              "h-12 text-base transition-all",
+              touched.nome && data.nome && data.nome.trim().split(' ').length >= 2 && "border-green-500 focus-visible:ring-green-500"
+            )}
             required
+          />
+          <ValidationFeedback 
+            field="nome" 
+            value={data.nome} 
+            data={data}
+            touched={touched.nome}
           />
         </div>
 
@@ -102,23 +96,22 @@ export default function IdentificacaoStep({ data, onChange }) {
             value={data.email || ''}
             onChange={(e) => {
               onChange({ ...data, email: e.target.value });
-              validarCampo('email', e.target.value);
+              if (!touched.email) setTouched({ ...touched, email: true });
             }}
-            onBlur={(e) => validarCampo('email', e.target.value)}
+            onBlur={() => setTouched({ ...touched, email: true })}
             placeholder="seu.email@exemplo.com"
-            className="h-12 text-base"
+            className={cn(
+              "h-12 text-base transition-all",
+              touched.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) && "border-green-500 focus-visible:ring-green-500"
+            )}
             required
           />
-          {erros.email ? (
-            <div className="flex items-center gap-2 mt-1">
-              <AlertCircle className="w-4 h-4 text-red-500" />
-              <p className="text-sm text-red-600">{erros.email}</p>
-            </div>
-          ) : (
-            <p className="text-sm text-gray-500 mt-1">
-              Você receberá atualizações sobre sua manifestação por e-mail
-            </p>
-          )}
+          <ValidationFeedback 
+            field="email" 
+            value={data.email} 
+            data={data}
+            touched={touched.email}
+          />
         </div>
 
         <div>
@@ -132,23 +125,31 @@ export default function IdentificacaoStep({ data, onChange }) {
             value={data.telefone || ''}
             onChange={(e) => {
               onChange({ ...data, telefone: e.target.value });
-              validarCampo('telefone', e.target.value);
+              if (!touched.telefone) setTouched({ ...touched, telefone: true });
             }}
             onBlur={(e) => {
-              validarCampo('telefone', e.target.value);
-              if (e.target.value && validarTelefone(e.target.value)) {
-                onChange({ ...data, telefone: formatarTelefone(e.target.value) });
+              setTouched({ ...touched, telefone: true });
+              const value = e.target.value;
+              if (value) {
+                const numbers = value.replace(/\D/g, '');
+                if (numbers.length >= 10 && numbers.length <= 11) {
+                  onChange({ ...data, telefone: formatarTelefone(value) });
+                }
               }
             }}
             placeholder="(61) 99999-9999"
-            className="h-12 text-base"
+            className={cn(
+              "h-12 text-base transition-all",
+              touched.telefone && data.telefone && /^[\d\s()-]+$/.test(data.telefone) && "border-green-500 focus-visible:ring-green-500"
+            )}
           />
-          {erros.telefone && (
-            <div className="flex items-center gap-2 mt-1">
-              <AlertCircle className="w-4 h-4 text-red-500" />
-              <p className="text-sm text-red-600">{erros.telefone}</p>
-            </div>
-          )}
+          <ValidationFeedback 
+            field="telefone" 
+            value={data.telefone} 
+            data={data}
+            touched={touched.telefone}
+            showSuccess={false}
+          />
         </div>
       </div>
 

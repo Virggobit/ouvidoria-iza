@@ -7,8 +7,10 @@ import { cn } from '@/lib/utils';
 import AssistenteVoz from '@/components/iza/AssistenteVoz';
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
+import { ValidationFeedback } from './FormValidation';
 
 export default function RelatoStep({ data, onChange }) {
+  const [touchedRelato, setTouchedRelato] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [audioUrl, setAudioUrl] = useState(data.audioUrl || null);
@@ -138,18 +140,30 @@ export default function RelatoStep({ data, onChange }) {
         <Textarea
           id="relato"
           value={data.relato || ''}
-          onChange={(e) => onChange({ ...data, relato: e.target.value })}
+          onChange={(e) => {
+            onChange({ ...data, relato: e.target.value });
+            if (!touchedRelato) setTouchedRelato(true);
+          }}
+          onBlur={() => setTouchedRelato(true)}
           placeholder="Descreva sua manifestação com detalhes. Seja específico sobre o que aconteceu, quando, onde e quem estava envolvido..."
-          className="min-h-[200px] text-base resize-y"
+          className={cn(
+            "min-h-[200px] text-base resize-y transition-all",
+            touchedRelato && charCount >= minChars && "border-green-500 focus-visible:ring-green-500"
+          )}
           aria-describedby="relato-help"
         />
-        <div className="flex justify-between items-center mt-2">
-          <p id="relato-help" className="text-sm text-gray-500">
-            Mínimo de {minChars} caracteres
-          </p>
+        <div className="flex justify-between items-start mt-2">
+          <div className="flex-1">
+            <ValidationFeedback 
+              field="relato" 
+              value={data.relato} 
+              data={data}
+              touched={touchedRelato}
+            />
+          </div>
           <span className={cn(
-            "text-sm font-medium",
-            charCount < minChars ? "text-red-500" : "text-gray-500"
+            "text-sm font-medium flex-shrink-0 ml-2",
+            charCount < minChars ? "text-amber-600" : "text-gray-500"
           )}>
             {charCount}/{maxChars}
           </span>

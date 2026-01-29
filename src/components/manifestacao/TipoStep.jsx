@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AlertTriangle, MessageSquare, ThumbsUp, Lightbulb, HelpCircle, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { ValidationFeedback } from './FormValidation';
 
 const tipos = [
   {
@@ -58,6 +59,8 @@ const tipos = [
 ];
 
 export default function TipoStep({ data, onChange }) {
+  const [touched, setTouched] = useState({ tipo: false, titulo: false });
+
   return (
     <div className="space-y-6">
       <div>
@@ -79,7 +82,10 @@ export default function TipoStep({ data, onChange }) {
               <button
                 key={tipo.id}
                 type="button"
-                onClick={() => onChange({ ...data, tipo: tipo.id })}
+                onClick={() => {
+                  onChange({ ...data, tipo: tipo.id });
+                  setTouched({ ...touched, tipo: true });
+                }}
                 className={cn(
                   "flex flex-col items-center p-6 rounded-xl border-2 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300",
                   isSelected ? tipo.selectedColor : tipo.color
@@ -108,14 +114,34 @@ export default function TipoStep({ data, onChange }) {
           <Input
             id="titulo"
             value={data.titulo || ''}
-            onChange={(e) => onChange({ ...data, titulo: e.target.value })}
+            onChange={(e) => {
+              onChange({ ...data, titulo: e.target.value });
+              if (!touched.titulo) setTouched({ ...touched, titulo: true });
+            }}
+            onBlur={() => setTouched({ ...touched, titulo: true })}
             placeholder="Resuma em poucas palavras o assunto da sua manifestação"
-            className="text-base h-12"
+            className={cn(
+              "text-base h-12 transition-all",
+              touched.titulo && data.titulo && data.titulo.length >= 5 && "border-green-500 focus-visible:ring-green-500"
+            )}
             maxLength={100}
           />
-          <p className="text-sm text-gray-500 mt-1">
-            {data.titulo?.length || 0}/100 caracteres
-          </p>
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <ValidationFeedback 
+                field="titulo" 
+                value={data.titulo} 
+                data={data}
+                touched={touched.titulo}
+              />
+            </div>
+            <p className={cn(
+              "text-sm mt-1",
+              data.titulo?.length >= 5 ? "text-gray-500" : "text-amber-600 font-medium"
+            )}>
+              {data.titulo?.length || 0}/100
+            </p>
+          </div>
         </div>
       </div>
 

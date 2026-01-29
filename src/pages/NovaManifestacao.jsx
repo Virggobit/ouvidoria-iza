@@ -15,6 +15,7 @@ import RevisaoStep from '@/components/manifestacao/RevisaoStep';
 import ProtocoloSuccess from '@/components/manifestacao/ProtocoloSuccess';
 import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
 import VLibrasWidget from '@/components/iza/VLibrasWidget';
+import { useDraftAutoSave, DraftIndicator } from '@/components/manifestacao/AutoSaveDraft';
 
 export default function NovaManifestacao() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -36,6 +37,8 @@ export default function NovaManifestacao() {
     telefone: '',
     consentimento: false,
   });
+
+  const { lastSaved, hasChanges, saveDraft, deleteDraft } = useDraftAutoSave(formData, setFormData);
 
   const generateProtocolo = () => {
     const year = new Date().getFullYear();
@@ -140,6 +143,7 @@ export default function NovaManifestacao() {
       });
 
       setProtocolo(newProtocolo);
+      deleteDraft(); // Limpar rascunho após envio bem-sucedido
       toast.success('Manifestação registrada com sucesso!');
     } catch (error) {
       console.error('Erro ao enviar:', error);
@@ -278,6 +282,12 @@ export default function NovaManifestacao() {
 
       <ChatbotAssistente />
       <VLibrasWidget />
+      <DraftIndicator 
+        lastSaved={lastSaved}
+        hasChanges={hasChanges}
+        onSave={saveDraft}
+        onDelete={deleteDraft}
+      />
     </div>
   );
 }
