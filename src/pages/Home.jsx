@@ -270,7 +270,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-6 text-sm">
-              <a href="#" className="hover:text-blue-300 transition-colors">Central 162</a>
+              <a href="https://ouvidoria.df.gov.br/category/ouvidoria/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Central 162</a>
               <Link to={createPageUrl('FAQ')} className="hover:text-blue-300 transition-colors">Perguntas Frequentes</Link>
               <Link to={createPageUrl('Acessibilidade')} className="hover:text-blue-300 transition-colors">Acessibilidade</Link>
               <Link to={createPageUrl('Termos')} className="hover:text-blue-300 transition-colors">Termos e Privacidade</Link>
