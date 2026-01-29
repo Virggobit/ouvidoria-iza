@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import NotificacaoButton from '@/components/notificacoes/NotificacaoButton';
 import BarraAcessibilidade from '@/components/acessibilidade/BarraAcessibilidade';
 import BarraNavegacaoInferior from '@/components/navegacao/BarraNavegacaoInferior';
+import { useNotificationMonitor } from '@/components/notificacoes/useNotificationMonitor';
+import { base44 } from '@/api/base44Client';
 
 export default function Layout({ children, currentPageName }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    base44.auth.me().then(setUser).catch(() => {});
+  }, []);
+
+  useNotificationMonitor(user);
   // Páginas que não devem mostrar o header com notificações
   const paginasSemHeader = ['Home', 'NovaManifestacao', 'ConsultarProtocolo', 'Backoffice', 'Termos', 'FAQ', 'Acessibilidade', 'Notificacoes', 'ConfiguracoesNotificacoes'];
 

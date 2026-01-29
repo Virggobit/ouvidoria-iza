@@ -19,6 +19,7 @@ import VLibrasWidget from '@/components/iza/VLibrasWidget';
 import InstallPrompt from '@/components/pwa/InstallPrompt';
 import BarraAcessibilidade from '@/components/acessibilidade/BarraAcessibilidade';
 import BarraNavegacaoInferior from '@/components/navegacao/BarraNavegacaoInferior';
+import NotificationPermissionPrompt from '@/components/notificacoes/NotificationPermissionPrompt';
 
 export default function Home() {
   return (
@@ -278,7 +279,8 @@ export default function Home() {
       <ChatbotAssistente />
       <VLibrasWidget />
       <InstallPrompt />
+      <NotificationPermissionPrompt />
       <BarraNavegacaoInferior />
-    </div>
-  );
-}
+      </div>
+      );
+      }
