@@ -17,6 +17,7 @@ import ChatbotAssistente from '@/components/iza/ChatbotAssistente';
 import WhatsAppConnect from '@/components/iza/WhatsAppConnect';
 import VLibrasWidget from '@/components/iza/VLibrasWidget';
 import InstallPrompt from '@/components/pwa/InstallPrompt';
+import BarraAcessibilidade from '@/components/acessibilidade/BarraAcessibilidade';
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
       >
         Pular para o conteúdo principal
       </a>
+      
+      {/* Barra de acessibilidade */}
+      <BarraAcessibilidade />
       
       {/* Header */}
       <header className="bg-[#004A8C] text-white">

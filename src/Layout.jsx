@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import NotificacaoButton from '@/components/notificacoes/NotificacaoButton';
+import BarraAcessibilidade from '@/components/acessibilidade/BarraAcessibilidade';
 
 export default function Layout({ children, currentPageName }) {
   // Páginas que não devem mostrar o header com notificações
@@ -13,6 +14,9 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen">
+      {/* Barra de acessibilidade */}
+      <BarraAcessibilidade />
+      
       {/* Header com notificações */}
       <header className="bg-[#004A8C] text-white py-3 shadow-md">
         <div className="max-w-6xl mx-auto px-4">
