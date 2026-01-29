@@ -48,6 +48,7 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import Acessibilidade from './pages/Acessibilidade';
+import AcessoBackoffice from './pages/AcessoBackoffice';
 import Auditoria from './pages/Auditoria';
 import Backoffice from './pages/Backoffice';
 import ConfiguracoesNotificacoes from './pages/ConfiguracoesNotificacoes';
@@ -58,12 +59,12 @@ import Notificacoes from './pages/Notificacoes';
 import NovaManifestacao from './pages/NovaManifestacao';
 import Offline from './pages/Offline';
 import Termos from './pages/Termos';
-import AcessoBackoffice from './pages/AcessoBackoffice';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "Acessibilidade": Acessibilidade,
+    "AcessoBackoffice": AcessoBackoffice,
     "Auditoria": Auditoria,
     "Backoffice": Backoffice,
     "ConfiguracoesNotificacoes": ConfiguracoesNotificacoes,
@@ -74,7 +75,6 @@ export const PAGES = {
     "NovaManifestacao": NovaManifestacao,
     "Offline": Offline,
     "Termos": Termos,
-    "AcessoBackoffice": AcessoBackoffice,
 }
 
 export const pagesConfig = {
