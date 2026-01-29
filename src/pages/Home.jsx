@@ -73,6 +73,9 @@ export default function Home() {
                 <Link to={createPageUrl('Acessibilidade')} className="text-sm hover:text-yellow-300 transition-colors">
                   Acessibilidade
                 </Link>
+                <Link to={createPageUrl('Artefatos')} className="text-sm hover:text-yellow-300 transition-colors">
+                  Artefatos
+                </Link>
                 <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors">
                   Consultar Protocolo
                 </Link>
@@ -95,6 +98,9 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">
           <Link to={createPageUrl('Acessibilidade')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
             Acessibilidade
+          </Link>
+          <Link to={createPageUrl('Artefatos')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+            Artefatos
           </Link>
           <Link to={createPageUrl('ConsultarProtocolo')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
             Consultar Protocolo
