@@ -78,7 +78,7 @@ export default function WhatsAppConnect() {
         <a href={whatsappURL} target="_blank" rel="noopener noreferrer" className="block">
           <Button 
             size="lg" 
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold h-12"
+            className="w-full bg-green-700 hover:bg-green-800 text-white font-semibold h-12"
           >
             <MessageCircle className="w-5 h-5 mr-2" />
             Conectar WhatsApp com IZA+
