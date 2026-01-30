@@ -50,6 +50,7 @@
 import APIDocumentacao from './pages/APIDocumentacao';
 import Acessibilidade from './pages/Acessibilidade';
 import AcessoBackoffice from './pages/AcessoBackoffice';
+import Artefatos from './pages/Artefatos';
 import Auditoria from './pages/Auditoria';
 import Backoffice from './pages/Backoffice';
 import ConfiguracoesNotificacoes from './pages/ConfiguracoesNotificacoes';
@@ -60,7 +61,6 @@ import Notificacoes from './pages/Notificacoes';
 import NovaManifestacao from './pages/NovaManifestacao';
 import Offline from './pages/Offline';
 import Termos from './pages/Termos';
-import Artefatos from './pages/Artefatos';
 import __Layout from './Layout.jsx';
 
 
@@ -68,6 +68,7 @@ export const PAGES = {
     "APIDocumentacao": APIDocumentacao,
     "Acessibilidade": Acessibilidade,
     "AcessoBackoffice": AcessoBackoffice,
+    "Artefatos": Artefatos,
     "Auditoria": Auditoria,
     "Backoffice": Backoffice,
     "ConfiguracoesNotificacoes": ConfiguracoesNotificacoes,
@@ -78,7 +79,6 @@ export const PAGES = {
     "NovaManifestacao": NovaManifestacao,
     "Offline": Offline,
     "Termos": Termos,
-    "Artefatos": Artefatos,
 }
 
 export const pagesConfig = {

@@ -234,7 +234,7 @@ INSTRUÇÕES DE RESPOSTA:
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-[#0E6B4E] hover:bg-[#0B3D2E] text-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 z-[9999] group"
+          className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-[#0E6B4E] hover:bg-[#0B3D2E] active:scale-95 text-white rounded-full shadow-2xl flex items-center justify-center transition-transform z-[9999] touch-manipulation"
           aria-label="Abrir assistente IZA+"
         >
           <div className="relative">
@@ -242,6 +242,8 @@ INSTRUÇÕES DE RESPOSTA:
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
               alt="IZA"
               className="w-10 h-10 object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full animate-pulse" />
           </div>
@@ -250,9 +252,9 @@ INSTRUÇÕES DE RESPOSTA:
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-4 sm:bottom-24 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-2rem)] sm:h-[600px] max-h-[calc(100vh-2rem)] sm:max-h-[80vh] bg-white rounded-2xl shadow-2xl flex flex-col z-[9999] border border-gray-200">
+        <div className="fixed bottom-0 sm:bottom-24 right-0 sm:right-6 w-full sm:w-96 h-[100vh] sm:h-[600px] sm:max-h-[80vh] bg-white sm:rounded-2xl shadow-2xl flex flex-col z-[9999] border-t sm:border border-gray-200">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#0B3D2E] to-[#0E6B4E] text-white p-4 rounded-t-2xl flex items-center justify-between">
+          <div className="bg-gradient-to-r from-[#0B3D2E] to-[#0E6B4E] text-white p-3 sm:p-4 sm:rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
                 <img 

@@ -46,6 +46,9 @@ export default function Home() {
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
                     alt="IZA Robô"
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
                   />
                 </div>
                 <div>
@@ -64,6 +67,8 @@ export default function Home() {
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
                     alt="Participa DF"
                     className="h-32 lg:h-40 object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </a>
               </div>
@@ -130,35 +135,37 @@ export default function Home() {
                 A IZA+ utiliza inteligência artificial para agilizar o atendimento 
                 e garantir que sua demanda chegue ao órgão certo.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to={createPageUrl('NovaManifestacao')}>
-                  <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold h-14 px-8 text-lg shadow-xl">
-                    <FileText className="w-5 h-5 mr-2" />
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link to={createPageUrl('NovaManifestacao')} className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-semibold h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg shadow-xl touch-manipulation">
+                    <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Registrar Manifestação
                   </Button>
                 </Link>
-                <Link to={createPageUrl('ConsultarProtocolo')}>
-                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 h-14 px-8 font-semibold">
-                    <Search className="w-5 h-5 mr-2" />
+                <Link to={createPageUrl('ConsultarProtocolo')} className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 active:scale-95 h-12 sm:h-14 px-6 sm:px-8 font-semibold touch-manipulation">
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Consultar Protocolo
                   </Button>
                 </Link>
-                <a href="https://www.participa.df.gov.br/static/orientacao-manifestacao" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 h-14 px-8 font-semibold">
-                    <HelpCircle className="w-5 h-5 mr-2" />
-                    Orientações para seu registro
+                <a href="https://www.participa.df.gov.br/static/orientacao-manifestacao" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 active:scale-95 h-12 sm:h-14 px-6 sm:px-8 font-semibold touch-manipulation">
+                    <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    Orientações
                   </Button>
                 </a>
               </div>
             </div>
             <div className="hidden md:flex justify-center">
               <div className="relative">
-                  <div className="w-72 h-72 bg-blue-400/20 rounded-full absolute -top-8 -left-8 animate-pulse" />
+                  <div className="w-72 h-72 bg-blue-400/20 rounded-full absolute -top-8 -left-8 animate-pulse will-change-transform" />
                 <div className="w-80 h-80 bg-white/10 backdrop-blur rounded-3xl p-8 relative z-10 flex items-center justify-center">
                   <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
                     alt="IZA+ Robô Assistente"
-                    className="w-full h-full object-contain drop-shadow-2xl animate-float"
+                    className="w-full h-full object-contain drop-shadow-2xl animate-float will-change-transform"
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -179,7 +186,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { name: 'Denúncia', desc: 'Relate irregularidades', color: 'bg-red-500', icon: '🚨' },
               { name: 'Reclamação', desc: 'Reclame de serviços', color: 'bg-orange-500', icon: '📢' },
@@ -187,14 +194,14 @@ export default function Home() {
               { name: 'Elogio', desc: 'Reconheça bom atendimento', color: 'bg-blue-500', icon: '⭐' },
             ].map((tipo) => (
               <Link key={tipo.name} to={createPageUrl('NovaManifestacao')}>
-                <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-0 shadow-md hover:-translate-y-1">
-                  <CardContent className="p-6">
-                    <div className={`w-14 h-14 ${tipo.color} rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform`}>
+                <Card className="group hover:shadow-xl transition-shadow duration-300 cursor-pointer border-0 shadow-md active:scale-95 touch-manipulation h-full">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 ${tipo.color} rounded-2xl flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform will-change-transform`}>
                       {tipo.icon}
                     </div>
-                    <h4 className="font-semibold text-lg text-gray-900 mb-1">{tipo.name}</h4>
-                    <p className="text-sm text-gray-500">{tipo.desc}</p>
-                    <ChevronRight className="w-5 h-5 text-gray-400 mt-4 group-hover:translate-x-2 transition-transform" />
+                    <h4 className="font-semibold text-base sm:text-lg text-gray-900 mb-1">{tipo.name}</h4>
+                    <p className="text-xs sm:text-sm text-gray-500 hidden sm:block">{tipo.desc}</p>
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mt-2 sm:mt-4 group-hover:translate-x-2 transition-transform" />
                   </CardContent>
                 </Card>
               </Link>
@@ -221,9 +228,9 @@ export default function Home() {
       </section>
 
       {/* Benefícios */}
-      <section className="bg-slate-50 py-16 md:py-24">
+      <section className="bg-slate-50 py-12 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
               { 
                 icon: Sparkles, 
