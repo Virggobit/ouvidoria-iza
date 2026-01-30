@@ -68,6 +68,36 @@ img, video {
   }
 }
 
+/* Melhorias de acessibilidade */
+@layer base {
+  /* Foco visível melhorado */
+  *:focus-visible {
+    outline: 3px solid hsl(45, 100%, 50%);
+    outline-offset: 2px;
+  }
+
+  /* Garantir contraste mínimo de texto */
+  body {
+    color: hsl(222.2, 84%, 4.9%);
+  }
+
+  /* Links com underline ao passar mouse ou foco */
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+
+  /* Botões com indicação clara de estado */
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Melhorar legibilidade de texto */
+  p, li, span, label {
+    line-height: 1.6;
+  }
+}
+
 @layer utilities {
   @keyframes float {
     0%, 100% {

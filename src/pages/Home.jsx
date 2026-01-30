@@ -27,7 +27,7 @@ export default function Home() {
       {/* Skip to main content link */}
       <a 
         href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-900 focus:text-white focus:px-6 focus:py-3 focus:rounded-lg focus:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-400 font-semibold text-base"
       >
         Pular para o conteúdo principal
       </a>
@@ -36,15 +36,15 @@ export default function Home() {
       <BarraAcessibilidade />
       
       {/* Header */}
-      <header className="bg-[#004A8C] text-white">
+      <header className="bg-[#004A8C] text-white" role="banner">
         <div className="max-w-6xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden" aria-hidden="true">
                   <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
-                    alt="IZA Robô"
+                    alt="IZA - Robô mascote da Ouvidoria Inteligente do Distrito Federal"
                     className="w-full h-full object-cover"
                     loading="eager"
                     decoding="async"
@@ -53,7 +53,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h1 className="font-bold text-xl">IZA+</h1>
-                  <p className="text-xs text-blue-200">Ouvidoria Inteligente</p>
+                  <p className="text-xs text-blue-100">Ouvidoria Inteligente</p>
                 </div>
               </div>
               <div className="hidden lg:flex items-center gap-4 ml-4 pl-4 border-l border-white/20">
@@ -61,11 +61,12 @@ export default function Home() {
                   href="https://www.participa.df.gov.br/static/faq-participa-df" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity focus:outline-none focus:ring-4 focus:ring-yellow-400 rounded-lg"
+                  aria-label="Acessar site do Participa DF - abre em nova aba"
                 >
                   <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/4add5d15f_Logo_participa_Horizontal-endereco-1.png" 
-                    alt="Participa DF"
+                    alt="Logo do Participa DF - Plataforma de participação social do Distrito Federal"
                     className="h-32 lg:h-40 object-contain"
                     loading="lazy"
                     decoding="async"
@@ -74,22 +75,28 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <nav className="hidden md:flex items-center gap-6">
-                <Link to={createPageUrl('Acessibilidade')} className="text-sm hover:text-yellow-300 transition-colors">
+              <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Menu principal">
+                <Link to={createPageUrl('Acessibilidade')} className="text-sm hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">
                   Acessibilidade
                 </Link>
-                <Link to={createPageUrl('Artefatos')} className="text-sm hover:text-yellow-300 transition-colors">
+                <Link to={createPageUrl('Artefatos')} className="text-sm hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">
                   Artefatos
                 </Link>
-                <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors">
+                <Link to={createPageUrl('ConsultarProtocolo')} className="text-sm hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">
                   Consultar Protocolo
                 </Link>
-                <Link to={createPageUrl('AcessoBackoffice')} className="text-sm hover:text-yellow-300 transition-colors">
+                <Link to={createPageUrl('AcessoBackoffice')} className="text-sm hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">
                   Área Interna
                 </Link>
               </nav>
-              <button className="md:hidden text-white p-2" onClick={() => document.getElementById('mobile-menu').classList.toggle('hidden')}>
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button 
+                className="md:hidden text-white p-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded" 
+                onClick={() => document.getElementById('mobile-menu').classList.toggle('hidden')}
+                aria-label="Abrir menu de navegação"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
@@ -99,25 +106,25 @@ export default function Home() {
       </header>
 
       {/* Mobile Menu */}
-      <div id="mobile-menu" className="hidden md:hidden bg-[#004A8C] border-t border-white/10">
+      <nav id="mobile-menu" className="hidden md:hidden bg-[#004A8C] border-t border-white/10" role="navigation" aria-label="Menu mobile">
         <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">
-          <Link to={createPageUrl('Acessibilidade')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+          <Link to={createPageUrl('Acessibilidade')} className="block py-3 text-base hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2">
             Acessibilidade
           </Link>
-          <Link to={createPageUrl('Artefatos')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+          <Link to={createPageUrl('Artefatos')} className="block py-3 text-base hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2">
             Artefatos
           </Link>
-          <Link to={createPageUrl('ConsultarProtocolo')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+          <Link to={createPageUrl('ConsultarProtocolo')} className="block py-3 text-base hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2">
             Consultar Protocolo
           </Link>
-          <Link to={createPageUrl('AcessoBackoffice')} className="block py-2 text-sm hover:text-yellow-300 transition-colors">
+          <Link to={createPageUrl('AcessoBackoffice')} className="block py-3 text-base hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2">
             Área Interna
           </Link>
         </div>
-      </div>
+      </nav>
 
       {/* Hero Section */}
-      <section id="main-content" className="bg-gradient-to-br from-[#004A8C] to-[#0066B3] text-white py-16 md:py-24">
+      <section id="main-content" className="bg-gradient-to-br from-[#004A8C] to-[#0066B3] text-white py-16 md:py-24" role="region" aria-label="Seção principal de boas-vindas">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -137,32 +144,32 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link to={createPageUrl('NovaManifestacao')} className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-semibold h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg shadow-xl touch-manipulation">
-                    <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <Button size="lg" className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800 active:scale-95 text-white font-semibold h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg shadow-xl touch-manipulation focus:outline-none focus:ring-4 focus:ring-yellow-400" aria-label="Registrar nova manifestação">
+                    <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" aria-hidden="true" />
                     Registrar Manifestação
                   </Button>
                 </Link>
                 <Link to={createPageUrl('ConsultarProtocolo')} className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 active:scale-95 h-12 sm:h-14 px-6 sm:px-8 font-semibold touch-manipulation">
-                    <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 active:scale-95 h-12 sm:h-14 px-6 sm:px-8 font-semibold touch-manipulation focus:outline-none focus:ring-4 focus:ring-yellow-400" aria-label="Consultar protocolo de manifestação">
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" aria-hidden="true" />
                     Consultar Protocolo
                   </Button>
                 </Link>
                 <a href="https://www.participa.df.gov.br/static/orientacao-manifestacao" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 active:scale-95 h-12 sm:h-14 px-6 sm:px-8 font-semibold touch-manipulation">
-                    <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <Button size="lg" className="w-full sm:w-auto bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 active:scale-95 h-12 sm:h-14 px-6 sm:px-8 font-semibold touch-manipulation focus:outline-none focus:ring-4 focus:ring-yellow-400" aria-label="Ver orientações sobre manifestações - abre em nova aba">
+                    <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" aria-hidden="true" />
                     Orientações
                   </Button>
                 </a>
               </div>
             </div>
-            <div className="hidden md:flex justify-center">
+            <div className="hidden md:flex justify-center" role="img" aria-label="Ilustração do robô IZA, mascote da Ouvidoria Inteligente">
               <div className="relative">
-                  <div className="w-72 h-72 bg-blue-400/20 rounded-full absolute -top-8 -left-8 animate-pulse will-change-transform" />
+                  <div className="w-72 h-72 bg-blue-400/20 rounded-full absolute -top-8 -left-8 animate-pulse will-change-transform" aria-hidden="true" />
                 <div className="w-80 h-80 bg-white/10 backdrop-blur rounded-3xl p-8 relative z-10 flex items-center justify-center">
                   <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
-                    alt="IZA+ Robô Assistente"
+                    alt="Robô IZA+ - Assistente virtual inteligente da Ouvidoria do Distrito Federal"
                     className="w-full h-full object-contain drop-shadow-2xl animate-float will-change-transform"
                     loading="eager"
                     decoding="async"
@@ -175,13 +182,13 @@ export default function Home() {
       </section>
 
       {/* Tipos de Manifestação */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24" role="region" aria-label="Tipos de manifestação disponíveis">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Como podemos ajudar?
-            </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            </h2>
+            <p className="text-gray-700 max-w-2xl mx-auto text-lg">
               Escolha o tipo de manifestação que melhor se adequa à sua necessidade
             </p>
           </div>
@@ -228,52 +235,56 @@ export default function Home() {
       </section>
 
       {/* Benefícios */}
-      <section className="bg-slate-50 py-12 md:py-24">
+      <section className="bg-slate-50 py-12 md:py-24" role="region" aria-label="Benefícios da plataforma IZA+">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
               { 
                 icon: Sparkles, 
                 title: 'Inteligência Artificial', 
-                desc: 'A IZA+ analisa sua manifestação e sugere a classificação correta, agilizando o atendimento.' 
+                desc: 'A IZA+ analisa sua manifestação e sugere a classificação correta, agilizando o atendimento.',
+                ariaLabel: 'Benefício: Inteligência Artificial'
               },
               { 
                 icon: Clock, 
                 title: 'Resposta Rápida', 
-                desc: 'Acompanhe o status em tempo real e receba atualizações sobre o andamento.' 
+                desc: 'Acompanhe o status em tempo real e receba atualizações sobre o andamento.',
+                ariaLabel: 'Benefício: Resposta Rápida'
               },
               { 
                 icon: Shield, 
                 title: 'Anonimato Garantido', 
-                desc: 'Faça denúncias de forma anônima com total proteção da sua identidade.' 
+                desc: 'Faça denúncias de forma anônima com total proteção da sua identidade.',
+                ariaLabel: 'Benefício: Anonimato Garantido'
               },
               { 
                 icon: MessageSquare, 
                 title: 'WhatsApp Integrado', 
-                desc: 'Registre manifestações por WhatsApp com texto, áudio, foto ou vídeo de forma prática.' 
+                desc: 'Registre manifestações por WhatsApp com texto, áudio, foto ou vídeo de forma prática.',
+                ariaLabel: 'Benefício: WhatsApp Integrado'
               },
             ].map((benefit, i) => (
-              <div key={i} className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <article key={i} className="text-center" aria-label={benefit.ariaLabel}>
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4" aria-hidden="true">
                   <benefit.icon className="w-8 h-8 text-blue-600" />
                 </div>
-                <h4 className="font-semibold text-lg text-gray-900 mb-2">{benefit.title}</h4>
-                <p className="text-gray-600">{benefit.desc}</p>
-              </div>
+                <h3 className="font-semibold text-lg text-gray-900 mb-2">{benefit.title}</h3>
+                <p className="text-gray-700 text-base leading-relaxed">{benefit.desc}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#004A8C] text-white py-12">
+      <footer className="bg-[#004A8C] text-white py-12" role="contentinfo">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden" aria-hidden="true">
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
-                  alt="IZA"
+                  alt="Logo do robô IZA"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -282,12 +293,12 @@ export default function Home() {
                 <p className="text-xs text-blue-300">Governo do Distrito Federal</p>
               </div>
             </div>
-            <div className="flex items-center gap-6 text-sm">
-              <a href="https://ouvidoria.df.gov.br/category/ouvidoria/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Central 162</a>
-              <Link to={createPageUrl('FAQ')} className="hover:text-blue-300 transition-colors">Perguntas Frequentes</Link>
-              <Link to={createPageUrl('Acessibilidade')} className="hover:text-blue-300 transition-colors">Acessibilidade</Link>
-              <Link to={createPageUrl('Termos')} className="hover:text-blue-300 transition-colors">Termos e Privacidade</Link>
-            </div>
+            <nav className="flex items-center gap-6 text-sm" role="navigation" aria-label="Menu do rodapé">
+              <a href="https://ouvidoria.df.gov.br/category/ouvidoria/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1" aria-label="Central 162 - abre em nova aba">Central 162</a>
+              <Link to={createPageUrl('FAQ')} className="hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">Perguntas Frequentes</Link>
+              <Link to={createPageUrl('Acessibilidade')} className="hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">Acessibilidade</Link>
+              <Link to={createPageUrl('Termos')} className="hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-2 py-1">Termos e Privacidade</Link>
+            </nav>
           </div>
           <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-blue-200">
             <p>© 2025 Ouvidoria-Geral do Distrito Federal. Todos os direitos reservados.</p>

@@ -116,8 +116,8 @@ export default function BarraAcessibilidade() {
   };
 
   return (
-    <div className="bg-gray-800 text-white py-2 px-4 flex items-center justify-end gap-4 flex-wrap">
-      <span className="font-bold text-sm">Acessibilidade:</span>
+    <div className="bg-gray-900 text-white py-2 px-4 flex items-center justify-end gap-4 flex-wrap" role="region" aria-label="Barra de ferramentas de acessibilidade">
+      <span className="font-bold text-sm" id="accessibility-label">Acessibilidade:</span>
       
       <Button
         onClick={aumentarFonte}

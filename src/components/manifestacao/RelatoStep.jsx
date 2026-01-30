@@ -146,6 +146,9 @@ export default function RelatoStep({ data, onChange }) {
             touchedRelato && charCount >= minChars && "border-green-500 focus-visible:ring-green-500"
           )}
           aria-describedby="relato-help"
+          aria-label="Campo de texto para descrever sua manifestação em detalhes"
+          aria-invalid={touchedRelato && charCount < minChars && !audioUrl && !videoUrl}
+          aria-required="true"
         />
         <div className="flex justify-between items-start mt-2">
           <div className="flex-1">

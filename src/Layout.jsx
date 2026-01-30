@@ -28,14 +28,14 @@ export default function Layout({ children, currentPageName }) {
       <BarraAcessibilidade />
       
       {/* Header com notificações */}
-      <header className="bg-[#004A8C] text-white py-2 sm:py-3 shadow-md">
+      <header className="bg-[#004A8C] text-white py-2 sm:py-3 shadow-md" role="banner">
         <div className="max-w-6xl mx-auto px-3 sm:px-4">
           <div className="flex items-center justify-between">
-            <Link to={createPageUrl('Home')} className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity touch-manipulation">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+            <Link to={createPageUrl('Home')} className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity touch-manipulation focus:outline-none focus:ring-4 focus:ring-yellow-400 rounded-lg" aria-label="Voltar para página inicial">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center overflow-hidden" aria-hidden="true">
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970f0a295b3af0e258e7858/a98a79e1f_RoboIZAATUALIZADO.png" 
-                  alt="IZA"
+                  alt="Logo do robô IZA"
                   className="w-full h-full object-cover"
                   loading="eager"
                   decoding="async"
@@ -43,10 +43,10 @@ export default function Layout({ children, currentPageName }) {
               </div>
               <div>
                 <h1 className="font-bold text-base sm:text-lg">IZA+</h1>
-                <p className="text-xs text-blue-200 hidden sm:block">Ouvidoria Inteligente</p>
+                <p className="text-xs text-blue-100 hidden sm:block">Ouvidoria Inteligente</p>
               </div>
             </Link>
-            
+
             <div className="flex items-center gap-4">
               <NotificacaoButton />
             </div>
