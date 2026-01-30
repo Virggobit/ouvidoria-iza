@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import AssistenteVoz from '@/components/iza/AssistenteVoz';
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { ValidationFeedback } from './FormValidation';
@@ -128,10 +127,6 @@ export default function RelatoStep({ data, onChange }) {
           Escreva seu relato detalhadamente, grave um áudio ou envie um vídeo explicando a situação.
         </p>
       </div>
-
-      <AssistenteVoz 
-        onTranscricao={(texto) => onChange({ ...data, relato: (data.relato || '') + '\n\n' + texto })}
-      />
 
       <div>
         <Label htmlFor="relato" className="text-base font-semibold text-gray-900 mb-2 block">
