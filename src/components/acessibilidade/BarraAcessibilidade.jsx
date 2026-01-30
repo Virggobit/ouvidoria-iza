@@ -74,7 +74,7 @@ export default function BarraAcessibilidade() {
         size="sm"
         variant="secondary"
         className="h-8 px-3"
-        aria-label="Aumentar tamanho da fonte"
+        aria-label="A+ Aumentar tamanho da fonte"
         title="Aumentar fonte (A+)"
       >
         <Plus className="w-4 h-4 mr-1" />
@@ -86,7 +86,7 @@ export default function BarraAcessibilidade() {
         size="sm"
         variant="secondary"
         className="h-8 px-3"
-        aria-label="Diminuir tamanho da fonte"
+        aria-label="A- Diminuir tamanho da fonte"
         title="Diminuir fonte (A-)"
       >
         <Minus className="w-4 h-4 mr-1" />
