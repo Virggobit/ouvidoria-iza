@@ -145,13 +145,13 @@ export default function TipoStep({ data, onChange }) {
         </div>
       </div>
 
-      <div className="bg-blue-50 rounded-xl p-6 border-2 border-blue-300">
+      <div className="bg-purple-100 rounded-xl p-6 border-2 border-purple-400">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <Label htmlFor="anonimo" className="text-lg font-bold text-gray-900">
+            <Label htmlFor="anonimo" className="text-lg font-bold text-purple-900">
               Deseja fazer o registro de forma anônima?
             </Label>
-            <p className="text-sm font-medium text-gray-700 mt-1">
+            <p className="text-sm font-medium text-purple-800 mt-1">
               Sua identidade não será revelada ao órgão responsável
             </p>
           </div>
