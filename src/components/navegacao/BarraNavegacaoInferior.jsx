@@ -40,11 +40,11 @@ export default function BarraNavegacaoInferior() {
 
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg md:hidden z-40"
+      className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg md:hidden z-40 safe-area-inset-bottom"
       role="navigation"
       aria-label="Navegação principal inferior"
     >
-      <div className="flex items-center justify-around h-16 max-w-screen-xl mx-auto">
+      <div className="flex items-center justify-around h-16 max-w-screen-xl mx-auto pb-safe">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);
@@ -54,7 +54,7 @@ export default function BarraNavegacaoInferior() {
               key={item.path}
               to={createPageUrl(item.path)}
               className={cn(
-                "flex flex-col items-center justify-center flex-1 h-full transition-colors",
+                "flex flex-col items-center justify-center flex-1 h-full transition-colors touch-manipulation active:scale-95",
                 active 
                   ? "text-[#004A8C] bg-blue-50" 
                   : "text-gray-500 hover:text-[#004A8C] hover:bg-gray-50"
