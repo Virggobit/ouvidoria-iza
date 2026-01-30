@@ -7,18 +7,24 @@ import { base44 } from '@/api/base44Client';
 import { useLocation } from 'react-router-dom';
 
 const perguntasFrequentes = [
-  'Como registrar uma denúncia?',
+  'Como registrar uma manifestação?',
   'Posso fazer de forma anônima?',
   'Quanto tempo leva para ter resposta?',
-  'Como acompanho minha manifestação?',
-  'Quais tipos de manifestação existem?',
-  'Como funciona o anonimato?',
+  'Como acompanho minha manifestação pelo protocolo?',
+  'Quais tipos de manifestação posso registrar?',
+  'Como funciona a triagem inteligente com IA?',
+  'Posso enviar áudio ou vídeo?',
+  'Como usar o WhatsApp para registrar?',
+  'O que é a ouvidoria do DF?',
+  'Onde encontro a documentação do sistema?',
 ];
 
 const mensagensProativas = {
-  '/NovaManifestacao': 'Vejo que você está registrando uma manifestação! Posso ajudar explicando o processo ou tirando dúvidas. 😊',
-  '/ConsultarProtocolo': 'Precisa de ajuda para consultar seu protocolo? Estou aqui para ajudar!',
-  '/FAQ': 'Está procurando respostas? Posso ajudar com suas dúvidas sobre o sistema!',
+  '/NovaManifestacao': 'Vejo que você está registrando uma manifestação! 📝 Posso ajudar explicando os tipos, o processo de triagem por IA, ou tirar qualquer dúvida.',
+  '/ConsultarProtocolo': 'Precisa de ajuda para consultar seu protocolo? 🔍 Posso explicar os status, prazos e como acompanhar sua manifestação.',
+  '/FAQ': 'Está procurando respostas? 💡 Posso ajudar com dúvidas sobre ouvidoria, manifestações, prazos e funcionalidades!',
+  '/Artefatos': 'Quer contribuir com o IZA+? 📚 Posso ajudar explicar como acessar a documentação ou enviar sugestões de melhoria.',
+  '/Acessibilidade': 'Precisa de ajuda com acessibilidade? ♿ Posso explicar os recursos disponíveis e como utilizá-los.',
 };
 
 const STORAGE_KEY = 'iza_chat_history';
@@ -110,22 +116,77 @@ export default function ChatbotAssistente() {
 
     try {
       const response = await base44.integrations.Core.InvokeLLM({
-        prompt: `Você é a IZA+, assistente virtual da Ouvidoria do Distrito Federal.
-        
-Contexto: O cidadão está usando o sistema IZA+ para registrar manifestações (denúncias, reclamações, elogios, sugestões).
+        prompt: `Você é a IZA+, assistente virtual inteligente da Ouvidoria-Geral do Distrito Federal.
 
-Pergunta do cidadão: ${text}
+INFORMAÇÕES DO SISTEMA IZA+:
 
-Responda de forma clara, objetiva e amigável em português do Brasil. 
-Seja útil e direcione o cidadão sobre como usar o sistema.
-Mantenha respostas curtas (máximo 3-4 linhas).
+TIPOS DE MANIFESTAÇÃO:
+- Denúncia: relatar irregularidades, fraudes ou má conduta
+- Reclamação: insatisfação com serviços públicos
+- Elogio: reconhecer bom atendimento ou serviço
+- Sugestão: propor melhorias nos serviços
+- Solicitação: requisitar serviços ou informações
+- Informação: obter esclarecimentos gerais
 
-Se for sobre:
-- Como registrar: explique que pode registrar por texto, áudio, imagem ou vídeo
-- Anonimato: pode optar por anonimato no início do processo
-- Protocolo: sempre gera protocolo automático para acompanhamento
-- Tempo: depende da complexidade, mas todas são analisadas pela equipe
-- Status: pode consultar pelo número do protocolo`,
+COMO REGISTRAR:
+- Texto: preencher formulário online
+- Áudio: gravar mensagem de voz (sem digitar)
+- Imagem: enviar fotos como evidência
+- Vídeo: enviar vídeos (até 50MB)
+- WhatsApp: conectar e enviar por mensagem
+
+ANONIMATO:
+- Pode escolher identificar-se ou manter anonimato
+- Mesmo anônimo, recebe protocolo para acompanhamento
+- Identidade protegida conforme Lei de Acesso à Informação
+
+TRIAGEM INTELIGENTE:
+- IA analisa a manifestação automaticamente
+- Sugere classificação, prioridade e área responsável
+- Triador humano valida e ajusta se necessário
+- Agiliza o encaminhamento para órgão correto
+
+PROTOCOLO E ACOMPANHAMENTO:
+- Protocolo único gerado automaticamente
+- Consulte status a qualquer momento
+- Notificações de mudanças de status
+- Histórico completo das ações
+
+PRAZOS:
+- Análise inicial: até 3 dias úteis
+- Resposta completa: 15 a 30 dias (depende da complexidade)
+- Você recebe atualizações no caminho
+
+OUVIDORIA DF:
+- Central 162 (telefone)
+- Atende denúncias sobre serviços públicos do DF
+- Promove controle social e transparência
+- Ligação entre cidadão e governo
+
+ACESSIBILIDADE:
+- Ajuste de fonte e alto contraste
+- VLibras para Língua Brasileira de Sinais
+- Navegação por teclado completa
+- Compatível com leitores de tela
+
+DOCUMENTAÇÃO E MELHORIAS:
+- Acesse artefatos e docs técnicas
+- Envie sugestões por texto, áudio ou vídeo
+- Contribua com a evolução da plataforma
+
+PÁGINA ATUAL DO USUÁRIO: ${location.pathname}
+
+PERGUNTA DO CIDADÃO: ${text}
+
+INSTRUÇÕES DE RESPOSTA:
+- Responda em português brasileiro, de forma clara e acessível
+- Seja amigável, empática e profissional
+- Use emojis ocasionalmente para humanizar (não exagere)
+- Mantenha respostas concisas (3-5 linhas idealmente)
+- Se for sobre navegação, indique onde encontrar a funcionalidade
+- Se for sobre preenchimento de formulário, dê orientações passo a passo
+- Para dúvidas técnicas, explique de forma simples
+- Sempre incentive o uso do sistema e reforce que estamos aqui para ajudar`,
       });
 
       const assistantMessage = { role: 'assistant', content: response };
