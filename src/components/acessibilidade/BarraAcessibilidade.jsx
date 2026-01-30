@@ -50,14 +50,14 @@ export default function BarraAcessibilidade() {
   }, []);
 
   const aumentarFonte = () => {
-    if (tamanhoFonte < 30) {
-      setTamanhoFonte(prev => prev + 2);
+    if (tamanhoFonte < 32) {
+      setTamanhoFonte(prev => prev + 4);
     }
   };
 
   const diminuirFonte = () => {
     if (tamanhoFonte > 10) {
-      setTamanhoFonte(prev => prev - 2);
+      setTamanhoFonte(prev => prev - 4);
     }
   };
 
