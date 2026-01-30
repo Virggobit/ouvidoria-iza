@@ -46,21 +46,30 @@ export default function AssistenteVoz({ onTranscricao }) {
     try {
       // Upload audio
       const audioFile = new File([blob], 'audio.webm', { type: 'audio/webm' });
-      const { file_url } = await base44.integrations.Core.UploadFile({ file: audioFile });
+      const uploadResponse = await base44.integrations.Core.UploadFile({ file: audioFile });
+      
+      if (!uploadResponse || !uploadResponse.file_url) {
+        throw new Error('Erro ao fazer upload do áudio');
+      }
 
       // Transcribe with LLM
       const transcricao = await base44.integrations.Core.InvokeLLM({
-        prompt: 'Transcreva o áudio fornecido em texto claro e formatado em português do Brasil. Corrija erros de dicção e pontuação.',
-        file_urls: [file_url],
+        prompt: 'Você receberá um arquivo de áudio. Sua tarefa é transcrever completamente todo o conteúdo falado neste áudio para texto em português do Brasil. Seja preciso, corrija erros de dicção, adicione pontuação adequada e formate o texto de forma clara e organizada. Retorne apenas o texto transcrito, sem comentários adicionais.',
+        file_urls: [uploadResponse.file_url],
       });
 
-      onTranscricao(transcricao);
-      toast.success('Áudio transcrito com sucesso!');
+      if (transcricao && typeof transcricao === 'string' && transcricao.trim().length > 0) {
+        onTranscricao(transcricao.trim());
+        toast.success('Áudio transcrito com sucesso!');
+      } else {
+        throw new Error('Transcrição vazia ou inválida');
+      }
     } catch (error) {
       console.error('Erro ao processar áudio:', error);
-      toast.error('Erro ao processar áudio');
+      toast.error('Erro ao processar áudio. Tente novamente.');
+    } finally {
+      setIsProcessing(false);
     }
-    setIsProcessing(false);
   };
 
   return (
