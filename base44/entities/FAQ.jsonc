@@ -1,0 +1,59 @@
+{
+  "name": "FAQ",
+  "type": "object",
+  "properties": {
+    "pergunta": {
+      "type": "string",
+      "description": "Pergunta frequente"
+    },
+    "resposta": {
+      "type": "string",
+      "description": "Resposta da pergunta"
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "registro",
+        "acompanhamento",
+        "anonimato",
+        "prazos",
+        "canais",
+        "geral"
+      ],
+      "default": "geral",
+      "description": "Categoria da pergunta"
+    },
+    "votos_util": {
+      "type": "number",
+      "default": 0,
+      "description": "N\u00famero de votos \u00fateis"
+    },
+    "votos_nao_util": {
+      "type": "number",
+      "default": 0,
+      "description": "N\u00famero de votos n\u00e3o \u00fateis"
+    },
+    "gerada_por_ia": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se foi gerada pela IA"
+    },
+    "baseada_em_manifestacoes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs das manifesta\u00e7\u00f5es que geraram esta FAQ"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Se a FAQ est\u00e1 ativa"
+    }
+  },
+  "required": [
+    "pergunta",
+    "resposta",
+    "categoria"
+  ]
+}

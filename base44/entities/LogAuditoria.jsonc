@@ -1,0 +1,58 @@
+{
+  "name": "LogAuditoria",
+  "type": "object",
+  "properties": {
+    "manifestacao_id": {
+      "type": "string",
+      "description": "ID da manifesta\u00e7\u00e3o relacionada"
+    },
+    "protocolo": {
+      "type": "string",
+      "description": "Protocolo da manifesta\u00e7\u00e3o"
+    },
+    "acao": {
+      "type": "string",
+      "enum": [
+        "criacao",
+        "triagem_ia",
+        "triagem_humana",
+        "encaminhamento",
+        "resposta",
+        "alteracao_status"
+      ],
+      "description": "Tipo de a\u00e7\u00e3o realizada"
+    },
+    "usuario": {
+      "type": "string",
+      "description": "Usu\u00e1rio que realizou a a\u00e7\u00e3o"
+    },
+    "dados_anteriores": {
+      "type": "string",
+      "description": "JSON com dados antes da altera\u00e7\u00e3o"
+    },
+    "dados_novos": {
+      "type": "string",
+      "description": "JSON com dados ap\u00f3s a altera\u00e7\u00e3o"
+    },
+    "sugestao_ia": {
+      "type": "string",
+      "description": "JSON com sugest\u00f5es da IA"
+    },
+    "decisao_humana": {
+      "type": "string",
+      "description": "JSON com decis\u00e3o do triador"
+    },
+    "aceito_ia": {
+      "type": "boolean",
+      "description": "Se as sugest\u00f5es da IA foram aceitas"
+    },
+    "observacao": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es adicionais"
+    }
+  },
+  "required": [
+    "manifestacao_id",
+    "acao"
+  ]
+}

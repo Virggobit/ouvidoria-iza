@@ -1,0 +1,43 @@
+{
+  "name": "PreferenciasNotificacao",
+  "type": "object",
+  "properties": {
+    "usuario_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio"
+    },
+    "nova_resposta": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notificar quando houver nova resposta"
+    },
+    "mudanca_status": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notificar quando o status mudar"
+    },
+    "encaminhamento": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notificar quando for encaminhado"
+    },
+    "triagem_concluida": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notificar quando a triagem for conclu\u00edda"
+    },
+    "email_notificacoes": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enviar tamb\u00e9m por email"
+    },
+    "push_notificacoes": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enviar notifica\u00e7\u00f5es push no navegador"
+    }
+  },
+  "required": [
+    "usuario_email"
+  ]
+}

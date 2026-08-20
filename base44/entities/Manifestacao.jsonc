@@ -1,0 +1,171 @@
+{
+  "name": "Manifestacao",
+  "type": "object",
+  "properties": {
+    "protocolo": {
+      "type": "string",
+      "description": "N\u00famero \u00fanico do protocolo"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "denuncia",
+        "reclamacao",
+        "elogio",
+        "sugestao",
+        "solicitacao",
+        "informacao"
+      ],
+      "description": "Tipo da manifesta\u00e7\u00e3o"
+    },
+    "titulo": {
+      "type": "string",
+      "description": "T\u00edtulo curto da manifesta\u00e7\u00e3o"
+    },
+    "relato": {
+      "type": "string",
+      "description": "Texto do relato da manifesta\u00e7\u00e3o"
+    },
+    "canal": {
+      "type": "string",
+      "enum": [
+        "text",
+        "audio",
+        "image",
+        "video",
+        "mixed"
+      ],
+      "description": "Canal principal utilizado"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "URL do \u00e1udio gravado"
+    },
+    "anexos": {
+      "type": "array",
+      "description": "URLs dos arquivos anexados (imagens/v\u00eddeos)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "anonimo": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se a manifesta\u00e7\u00e3o \u00e9 an\u00f4nima"
+    },
+    "nome_cidadao": {
+      "type": "string",
+      "description": "Nome do cidad\u00e3o (se n\u00e3o an\u00f4nimo)"
+    },
+    "email_cidadao": {
+      "type": "string",
+      "description": "Email do cidad\u00e3o para contato"
+    },
+    "telefone_cidadao": {
+      "type": "string",
+      "description": "Telefone do cidad\u00e3o"
+    },
+    "consentimento_termos": {
+      "type": "boolean",
+      "default": false,
+      "description": "Aceite dos termos de uso"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "recebido",
+        "em_triagem",
+        "encaminhado",
+        "em_andamento",
+        "respondido",
+        "arquivado"
+      ],
+      "default": "recebido",
+      "description": "Status atual da manifesta\u00e7\u00e3o"
+    },
+    "mensagem_status_cidadao": {
+      "type": "string",
+      "description": "Mensagem de status vis\u00edvel ao cidad\u00e3o"
+    },
+    "ia_tipo_sugerido": {
+      "type": "string",
+      "description": "Tipo sugerido pela IA"
+    },
+    "ia_tema_sugerido": {
+      "type": "string",
+      "description": "Tema sugerido pela IA"
+    },
+    "ia_prioridade": {
+      "type": "string",
+      "enum": [
+        "alta",
+        "media",
+        "baixa"
+      ],
+      "description": "Prioridade sugerida pela IA"
+    },
+    "ia_resumo": {
+      "type": "string",
+      "description": "Resumo executivo gerado pela IA"
+    },
+    "ia_encaminhamento_sugerido": {
+      "type": "string",
+      "description": "\u00c1rea/unidade sugerida para encaminhamento"
+    },
+    "ia_confianca": {
+      "type": "number",
+      "description": "N\u00edvel de confian\u00e7a da classifica\u00e7\u00e3o IA (0-1)"
+    },
+    "tipo_final": {
+      "type": "string",
+      "description": "Tipo definido pelo triador"
+    },
+    "tema_final": {
+      "type": "string",
+      "description": "Tema definido pelo triador"
+    },
+    "prioridade_final": {
+      "type": "string",
+      "enum": [
+        "alta",
+        "media",
+        "baixa"
+      ],
+      "description": "Prioridade definida pelo triador"
+    },
+    "encaminhamento_final": {
+      "type": "string",
+      "description": "\u00c1rea para onde foi encaminhado"
+    },
+    "triador_responsavel": {
+      "type": "string",
+      "description": "Email do triador respons\u00e1vel"
+    },
+    "justificativa_triagem": {
+      "type": "string",
+      "description": "Justificativa do triador para altera\u00e7\u00f5es"
+    },
+    "data_triagem": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da triagem"
+    },
+    "resposta": {
+      "type": "string",
+      "description": "Resposta ao cidad\u00e3o"
+    },
+    "data_resposta": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tempo_resposta_horas": {
+      "type": "number",
+      "description": "Tempo em horas para resposta (m\u00e9trica)"
+    }
+  },
+  "required": [
+    "protocolo",
+    "tipo",
+    "status"
+  ]
+}

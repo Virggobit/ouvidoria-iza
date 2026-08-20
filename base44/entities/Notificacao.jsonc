@@ -1,0 +1,52 @@
+{
+  "name": "Notificacao",
+  "type": "object",
+  "properties": {
+    "usuario_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio que receber\u00e1 a notifica\u00e7\u00e3o"
+    },
+    "manifestacao_id": {
+      "type": "string",
+      "description": "ID da manifesta\u00e7\u00e3o relacionada"
+    },
+    "protocolo": {
+      "type": "string",
+      "description": "Protocolo da manifesta\u00e7\u00e3o"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "nova_resposta",
+        "mudanca_status",
+        "encaminhamento",
+        "triagem_concluida"
+      ],
+      "description": "Tipo da notifica\u00e7\u00e3o"
+    },
+    "titulo": {
+      "type": "string",
+      "description": "T\u00edtulo da notifica\u00e7\u00e3o"
+    },
+    "mensagem": {
+      "type": "string",
+      "description": "Conte\u00fado da notifica\u00e7\u00e3o"
+    },
+    "lida": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se a notifica\u00e7\u00e3o foi lida"
+    },
+    "data_leitura": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora que foi lida"
+    }
+  },
+  "required": [
+    "usuario_email",
+    "tipo",
+    "titulo",
+    "mensagem"
+  ]
+}
